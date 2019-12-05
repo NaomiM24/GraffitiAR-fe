@@ -5,20 +5,53 @@ import { Router } from "@reach/router";
 import Map from "./components/Map";
 import AR from "./components/AR";
 import React, { Component } from "react";
+import fire from "./config/Fire";
+import Login from "./components/Login";
+import Header from "./components/Header";
+import Signup from "./components/Signup";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: {},
+    };
+  }
+
+  componentDidMount() {
+    this.authListener();
+  }
+
+  authListener() {
+    fire.auth().onAuthStateChanged(user => {
+      if (user) {
+        console.log(user);
+        this.setState({ user });
+      } else {
+        this.setState({ user: null });
+      }
+    });
+  }
   render() {
+    const { user } = this.state;
     return (
       <div className="App">
-        <main className="App-main">
-          <h1 className="App-header">Graffiti ARtist</h1>
-          <NavBar className="App-navbar" />
-          <Router className="App-router">
-            <CanvasTest path="/canvas" className="App-router" />
-            <Map path="/map" className="App-router" />
-            <AR path="/ar" />
+        {!user ? (
+          <Router>
+            <Login path="/" />
+            <Signup path="/signup" />
           </Router>
-        </main>
+        ) : (
+          <main className="App-main">
+            <Header className="App-header" />
+            <NavBar className="App-navbar" />
+            <Router className="App-router">
+              <CanvasTest path="/canvas" className="App-router" />
+              <Map path="/" className="App-router" />
+              <AR path="/ar" />
+            </Router>
+          </main>
+        )}
       </div>
     );
   }

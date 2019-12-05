@@ -7,7 +7,7 @@ export default function NavBar() {
       <Link to="/canvas">
         <img src="/street-art.png" alt="canvas" className="nav-img" />
       </Link>
-      <Link to="/map">
+      <Link to="/">
         <img src="/map.png" alt="map" className="nav-img" />
       </Link>
       <Link to="/ar">AR</Link>
