@@ -1,38 +1,134 @@
+/* font-family: 'Major Mono Display', monospace;
+font-family: 'Barrio', cursive;
+font-family: 'Monofett', cursive; */
+
 .App {
+  /* margin: 0; */
   text-align: center;
+  height: 95vh;
+  background-color: rgba(84, 84, 179, 0.5);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body{
+  margin: 0;
+  position: absolute;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+.App-main {
+  width: 100vw;
+  display: grid;
+  grid-template-rows: 15% 70% 15%;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  font-family: 'Major Mono Display', monospace;
 }
+
 
 .App-link {
-  color: #61dafb;
+  color: #09d3ac;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.App-header{
+  grid-row: 1/2;
+  position: fixed;
+  justify-items: centre;
+}
+
+.App-router{
+  margin: 20% 0px 0px 0px;
+  grid-row: 2/3;
+}
+
+.App-navbar{
+  grid-row: 3/4;
+}
+nav{
+  background-color: rgb(115, 115, 196);
+  margin: 0;
+  width: 100%;
+  color: white;
+  position: fixed; 
+  bottom: 0; 
+  right: 0;
+  padding: 0.25em;
+  display: flex;
+  justify-content: space-around;
+}
+
+nav a{
+  color: white;
+  padding: 14px 40px;
+}
+
+nav a:visited{
+  color: white;
+}
+
+.nav-img{
+  width: 30px;
+}
+
+@media only screen and (max-width: 400px) {
+  .App-main {
+    grid-template-rows: 7.5% 85% 7.5%;
   }
-  to {
-    transform: rotate(360deg);
+  .App-header{
+    font-size: 1.5em;
+    text-align: center;
   }
+  .App-navbar{
+    padding: 0.1em
+  }
+}
+
+li{
+  list-style-type: none;
+  display: inline;
+  padding: 14px 40px;
+}
+
+button{
+  margin: 0px 10px;
+  border: none;
+  background-color:  rgba(84, 84, 179, 0);
+}
+
+.paint-color{
+  border-radius: 50%;
+  padding: 1em;
+  border-color: white;
+  border-style: solid;
+  border-width: 1px;
+}
+
+#red {
+  background-color: #ff0000;
+}
+#green{
+  background-color: #00ff00;
+}
+#yellow{
+  background-color: #ffff00;
+}
+#blue{
+  background-color: #0000ff;
+}
+#black{
+  background-color: #000000;
+}
+.canvas-buttons{
+  display: flex;
+  justify-content: space-around;
+  margin: 10px;
+}
+.canvas-change{
+  width: 20px;
+}
+.slider{
+  margin: 1em 0;
+}
+.marker-user{
+  color: black;
 }
