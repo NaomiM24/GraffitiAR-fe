@@ -9,7 +9,7 @@ font-family: 'Monofett', cursive; */
   background-color: rgba(84, 84, 179, 0.5);
 }
 
-body{
+body {
   margin: 0;
   position: absolute;
 }
@@ -22,51 +22,50 @@ body{
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-  font-family: 'Major Mono Display', monospace;
+  font-family: "Major Mono Display", monospace;
 }
-
 
 .App-link {
   color: #09d3ac;
 }
 
-.App-header{
+.App-header {
   grid-row: 1/2;
   position: fixed;
   justify-items: centre;
 }
 
-.App-router{
+.App-router {
   margin: 20% 0px 0px 0px;
   grid-row: 2/3;
 }
 
-.App-navbar{
+.App-navbar {
   grid-row: 3/4;
 }
-nav{
+nav {
   background-color: rgb(115, 115, 196);
   margin: 0;
   width: 100%;
   color: white;
-  position: fixed; 
-  bottom: 0; 
+  position: fixed;
+  bottom: 0;
   right: 0;
   padding: 0.25em;
   display: flex;
   justify-content: space-around;
 }
 
-nav a{
+nav a {
   color: white;
   padding: 14px 40px;
 }
 
-nav a:visited{
+nav a:visited {
   color: white;
 }
 
-.nav-img{
+.nav-img {
   width: 30px;
 }
 
@@ -74,28 +73,28 @@ nav a:visited{
   .App-main {
     grid-template-rows: 7.5% 85% 7.5%;
   }
-  .App-header{
+  .App-header {
     font-size: 1.5em;
     text-align: center;
   }
-  .App-navbar{
-    padding: 0.1em
+  .App-navbar {
+    padding: 0.1em;
   }
 }
 
-li{
+li {
   list-style-type: none;
   display: inline;
   padding: 14px 40px;
 }
 
-button{
+button {
   margin: 0px 10px;
   border: none;
-  background-color:  rgba(84, 84, 179, 0);
+  background-color: rgba(84, 84, 179, 0);
 }
 
-.paint-color{
+.paint-color {
   border-radius: 50%;
   padding: 1em;
   border-color: white;
@@ -106,29 +105,29 @@ button{
 #red {
   background-color: #ff0000;
 }
-#green{
+#green {
   background-color: #00ff00;
 }
-#yellow{
+#yellow {
   background-color: #ffff00;
 }
-#blue{
+#blue {
   background-color: #0000ff;
 }
-#black{
+#black {
   background-color: #000000;
 }
-.canvas-buttons{
+.canvas-buttons {
   display: flex;
   justify-content: space-around;
   margin: 10px;
 }
-.canvas-change{
+.canvas-change {
   width: 20px;
 }
-.slider{
+.slider {
   margin: 1em 0;
 }
-.marker-user{
+.marker-user {
   color: black;
 }
