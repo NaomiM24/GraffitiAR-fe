@@ -4,114 +4,114 @@ export default [
     elementType: "geometry",
     stylers: [
       {
-        color: "#004358"
-      }
-    ]
+        color: "#004358",
+      },
+    ],
   },
   {
     featureType: "landscape",
     elementType: "geometry",
     stylers: [
       {
-        color: "#1f8a70"
-      }
-    ]
+        color: "#1f8a70",
+      },
+    ],
   },
   {
     featureType: "poi",
     elementType: "geometry",
     stylers: [
       {
-        color: "#1f8a70"
-      }
-    ]
+        color: "#1f8a70",
+      },
+    ],
   },
   {
     featureType: "road.highway",
     elementType: "geometry",
     stylers: [
       {
-        color: "#fd7400"
-      }
-    ]
+        color: "#fd7400",
+      },
+    ],
   },
   {
     featureType: "road.arterial",
     elementType: "geometry",
     stylers: [
       {
-        color: "#1f8a70"
+        color: "#1f8a70",
       },
       {
-        lightness: -20
-      }
-    ]
+        lightness: -20,
+      },
+    ],
   },
   {
     featureType: "road.local",
     elementType: "geometry",
     stylers: [
       {
-        color: "#1f8a70"
+        color: "#1f8a70",
       },
       {
-        lightness: -17
-      }
-    ]
+        lightness: -17,
+      },
+    ],
   },
   {
     elementType: "labels.text.stroke",
     stylers: [
       {
-        color: "#ffffff"
+        color: "#ffffff",
       },
       {
-        visibility: "on"
+        visibility: "on",
       },
       {
-        weight: 0.9
-      }
-    ]
+        weight: 0.9,
+      },
+    ],
   },
   {
     elementType: "labels.text.fill",
     stylers: [
       {
-        visibility: "on"
+        visibility: "on",
       },
       {
-        color: "#ffffff"
-      }
-    ]
+        color: "#ffffff",
+      },
+    ],
   },
   {
     featureType: "poi",
     elementType: "labels",
     stylers: [
       {
-        visibility: "simplified"
-      }
-    ]
+        visibility: "simplified",
+      },
+    ],
   },
   {
     elementType: "labels.icon",
     stylers: [
       {
-        visibility: "off"
-      }
-    ]
+        visibility: "off",
+      },
+    ],
   },
   {
     featureType: "transit",
     elementType: "geometry",
     stylers: [
       {
-        color: "#1f8a70"
+        color: "#1f8a70",
       },
       {
-        lightness: -10
-      }
-    ]
+        lightness: -10,
+      },
+    ],
   },
   {},
   {
@@ -119,11 +119,11 @@ export default [
     elementType: "geometry",
     stylers: [
       {
-        color: "#1f8a70"
+        color: "#1f8a70",
       },
       {
-        weight: 0.7
-      }
-    ]
-  }
-]
+        weight: 0.7,
+      },
+    ],
+  },
+];

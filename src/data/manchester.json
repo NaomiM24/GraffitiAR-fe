@@ -1,7 +1,19 @@
 {
   "data": [
-    { "id": 1, "location": { "latitude": 53.48523, "longitude": -2.21837 }, "user": "aj" },
-    { "id": 2, "location": { "latitude": 53.476521, "longitude": -2.23021 }, "user": "jon" },
-    { "id": 3, "location": { "latitude": 53.47832, "longitude": -2.23991 }, "user": "naomi" }
+    {
+      "id": 1,
+      "location": { "latitude": 53.48523, "longitude": -2.21837 },
+      "user": "aj"
+    },
+    {
+      "id": 2,
+      "location": { "latitude": 53.476521, "longitude": -2.23021 },
+      "user": "jon"
+    },
+    {
+      "id": 3,
+      "location": { "latitude": 53.47832, "longitude": -2.23991 },
+      "user": "naomi"
+    }
   ]
 }
