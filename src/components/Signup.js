@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import fire from "../config/Fire";
-import { Link } from "@reach/router";
+import { Link, navigate } from "@reach/router";
 
 class Signup extends Component {
   constructor(props) {
@@ -32,6 +32,7 @@ class Signup extends Component {
           console.log(
             data.user.uid
           ); /* send username and uid to back end database */
+          navigate("/");
         })
         .catch(err => {
           console.log(err);

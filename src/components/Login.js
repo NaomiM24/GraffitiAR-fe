@@ -32,6 +32,7 @@ class Login extends Component {
   render() {
     return (
       <div>
+        <h1>Graffiti ARtist</h1>
         <form>
           <label>
             Email address
@@ -60,10 +61,13 @@ class Login extends Component {
           <button type="submit" onClick={this.login}>
             Login
           </button>
+          {this.state.errMsg && <p>{this.state.errMsg}</p>}
         </form>
-        {this.state.errMsg && <p>{this.state.errMsg}</p>}
-        <p>Don't have an account?</p>
-        <Link to="/signup">Sign Up</Link>
+
+        <section>
+          <p>Don't have an account?</p>
+          <Link to="/signup">Sign Up</Link>
+        </section>
       </div>
     );
   }
