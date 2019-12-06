@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Component } from "react";
 import {
   GoogleMap,
   withScriptjs,
@@ -9,47 +9,89 @@ import {
 import * as manchesterData from "../data/manchester";
 import mapStyle from "../data/mapStyle";
 
-function GMap() {
-  const [selectedPlace, setSelectedPlace] = useState(null);
-  return (
-    <GoogleMap
-      defaultZoom={13}
-      defaultCenter={{ lat: 53.480759, lng: -2.242631 }}
-      defaultOptions={{ styles: mapStyle }}
-    >
-      {manchesterData.default.data.map(place => (
-        <Marker
-          key={place.id}
-          position={{
-            lat: place.location.latitude,
-            lng: place.location.longitude,
-          }}
-          onClick={() => {
-            setSelectedPlace(place);
-          }}
-          icon={{
-            url: "/spray-can.png",
-            scaledSize: new window.google.maps.Size(25, 25),
-          }}
-        />
-      ))}
-      {selectedPlace && (
-        <InfoWindow
-          position={{
-            lat: selectedPlace.location.latitude,
-            lng: selectedPlace.location.longitude,
-          }}
-          onCloseClick={() => {
-            setSelectedPlace(null);
-          }}
-        >
-          <div>
-            <p className="marker-user">{selectedPlace.user}</p>
-          </div>
-        </InfoWindow>
-      )}
-    </GoogleMap>
-  );
+class GMap extends Component {
+  state = {
+    selectedPlace: null,
+    setSelectedPlace: null,
+    currentLatLng: {
+      lat: 0,
+      lng: 0,
+    },
+    isMarkerShown: false,
+  };
+  componentDidMount() {
+    this.getGeoLocation();
+    this.setState({ isMarkerShown: true });
+    this.interval = setInterval(() => this.getGeoLocation(), 1000);
+  }
+
+  getGeoLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(position => {
+        this.setState({
+          currentLatLng: {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          },
+        });
+      });
+    }
+  };
+  render() {
+    console.log(this.state.currentLatLng);
+    return (
+      <GoogleMap
+        defaultZoom={13}
+        center={{
+          lat: this.state.currentLatLng.lat,
+          lng: this.state.currentLatLng.lng,
+        }}
+        defaultOptions={{ styles: mapStyle }}
+      >
+        {manchesterData.default.data.map(place => (
+          <Marker
+            key={place.id}
+            position={{
+              lat: place.location.latitude,
+              lng: place.location.longitude,
+            }}
+            onClick={() => {
+              console.log("marker");
+              this.setState({ selectedPlace: place });
+            }}
+            icon={{
+              url: "/spray-can.png",
+              scaledSize: new window.google.maps.Size(25, 25),
+            }}
+          />
+        ))}
+        {this.state.isMarkerShown && (
+          <Marker
+            position={{
+              lat: this.state.currentLatLng.lat,
+              lng: this.state.currentLatLng.lng,
+            }}
+          />
+        )}
+        {this.state.selectedPlace && (
+          <InfoWindow
+            position={{
+              lat: this.state.selectedPlace.location.latitude,
+              lng: this.state.selectedPlace.location.longitude,
+            }}
+            onCloseClick={() => {
+              console.log("clicked");
+              this.setState({ setSelectedPlace: null });
+            }}
+          >
+            <div>
+              <p className="marker-user">{this.state.selectedPlace.user}</p>
+            </div>
+          </InfoWindow>
+        )}
+      </GoogleMap>
+    );
+  }
 }
 
 const WrappedMap = withScriptjs(withGoogleMap(GMap));
