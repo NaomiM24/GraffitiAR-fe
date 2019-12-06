@@ -35,6 +35,14 @@ body {
   justify-items: centre;
 }
 
+header {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  align-items: center;
+  justify-items: center;
+}
+
 .App-router {
   margin: 20% 0px 0px 0px;
   grid-row: 2/3;
@@ -131,8 +139,6 @@ button {
 .marker-user {
   color: black;
 }
-
-/* login / signup */
 
 .login {
   display: flex;
