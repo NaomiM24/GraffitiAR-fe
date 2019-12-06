@@ -43,7 +43,8 @@ class Signup extends Component {
 
   render() {
     return (
-      <div>
+      <div className="login">
+        <h1>Graffiti ARtist</h1>
         <form>
           <label>
             Email address
@@ -90,12 +91,13 @@ class Signup extends Component {
               required
             />
           </label>
-
           <button onClick={this.signup}>Signup</button>
+          {this.state.errMsg && <p>{this.state.errMsg}</p>}
         </form>
-        {this.state.errMsg && <p>{this.state.errMsg}</p>}
-        <p>Already have an account?</p>
-        <Link to="/">Log In</Link>
+        <section>
+          <p>Already have an account?</p>
+          <Link to="/">Log In</Link>
+        </section>
       </div>
     );
   }

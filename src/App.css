@@ -131,3 +131,42 @@ button {
 .marker-user {
   color: black;
 }
+
+/* login / signup */
+
+.login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100vw;
+}
+
+.login form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 200px;
+  width: 206px;
+  margin: auto;
+}
+
+.login form label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 10px;
+  text-align: left;
+}
+
+.login form label input {
+  width: 200px;
+  margin: 0 auto;
+}
+
+.login form button {
+  border: 1px solid black;
+  width: 60px;
+  padding: 8px 0;
+  margin: 10px auto;
+  font-size: medium;
+}
