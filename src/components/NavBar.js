@@ -10,7 +10,9 @@ export default function NavBar() {
       <Link to="/">
         <img src="/map.png" alt="map" className="nav-img" />
       </Link>
-      <Link to="/ar">AR</Link>
+      <Link to="/view">
+        <img src="/gallery.png" alt="gallery" />
+      </Link>
     </nav>
   );
 }

@@ -10,15 +10,15 @@ ReactDOM.render(<CanvasDraw />, document.getElementById("root"));
 export default class CanvasTest extends Component {
   state = {
     color: "#0000ff",
-    width: window.innerWidth,
-    height: window.innerHeight * 0.6,
+    dimension: window.innerWidth * 0.9,
+    // height: window.innerHeight * 0.6,
     brushRadius: 4,
     min: 1,
     max: 20,
   };
   render() {
     return (
-      <div className="canvas-section">
+      <main>
         <button
           onClick={this.handleColorChange}
           name="#0000ff"
@@ -59,8 +59,8 @@ export default class CanvasTest extends Component {
         <CanvasDraw
           ref={canvasDraw => (this.saveableCanvas = canvasDraw)}
           brushColor={this.state.color}
-          canvasWidth={this.state.width}
-          canvasHeight={this.state.height}
+          canvasWidth={this.state.dimension}
+          canvasHeight={this.state.dimension}
           brushRadius={this.state.brushRadius}
         />
         <div className="canvas-buttons">
@@ -89,7 +89,7 @@ export default class CanvasTest extends Component {
             <img src="/paper-plane.png" alt="send" className="canvas-change" />
           </button>
         </div>
-      </div>
+      </main>
     );
   }
   handleColorChange = event => {
