@@ -41,12 +41,16 @@ class GMap extends Component {
     console.log(this.state.currentLatLng);
     return (
       <GoogleMap
-        defaultZoom={13}
+        defaultZoom={14}
         center={{
           lat: this.state.currentLatLng.lat,
           lng: this.state.currentLatLng.lng,
         }}
-        defaultOptions={{ styles: mapStyle }}
+        defaultOptions={{
+          styles: mapStyle,
+          mapTypeControl: false,
+          streetViewControl: false,
+        }}
       >
         {manchesterData.default.data.map(place => (
           <Marker
@@ -70,6 +74,10 @@ class GMap extends Component {
             position={{
               lat: this.state.currentLatLng.lat,
               lng: this.state.currentLatLng.lng,
+            }}
+            icon={{
+              url: "/user-location.png",
+              scaledSize: new window.google.maps.Size(25, 25),
             }}
           />
         )}
