@@ -31,11 +31,11 @@ class Login extends Component {
 
   render() {
     return (
-      <div>
+      <div className="login">
         <h1>Graffiti ARtist</h1>
         <form>
           <label>
-            Email address
+            Email address:{" "}
             <input
               value={this.state.email}
               onChange={this.handleChange}
@@ -47,7 +47,7 @@ class Login extends Component {
             />
           </label>
           <label>
-            Password
+            Password:{" "}
             <input
               value={this.state.password}
               onChange={this.handleChange}
