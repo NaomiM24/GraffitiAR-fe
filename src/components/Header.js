@@ -16,7 +16,7 @@ class Header extends Component {
     return (
       <div>
         <h1>Graffiti AR</h1>
-        <SettingsContainer/>
+        <SettingsContainer />
       </div>
     );
   }
