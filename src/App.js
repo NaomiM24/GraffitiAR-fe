@@ -8,7 +8,7 @@ import fire from "./config/Fire";
 import Login from "./components/Login";
 import Header from "./components/Header";
 import Signup from "./components/Signup";
-import CanvasViewer from "./components/CanvasViewer";
+import CanvasList from "./components/CanvasList";
 
 class App extends Component {
   constructor(props) {
@@ -48,7 +48,7 @@ class App extends Component {
             <Router className="App-router">
               <CanvasTest path="/canvas" className="App-router" />
               <Map path="/" className="App-router" />
-              <CanvasViewer path="/view" className="App-router" />
+              <CanvasList path="/view" className="App-router" />
             </Router>
           </main>
         )}
