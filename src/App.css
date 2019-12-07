@@ -133,6 +133,17 @@ button {
 .canvas-change {
   width: 20px;
 }
+.canvas-list {
+  display: flex;
+  flex-direction: column;
+  margin: 0 10%;
+  padding: 0;
+}
+.canvas-card {
+  color: black;
+  background-color: white;
+  margin: 10px 0px;
+}
 .slider {
   margin: 1em 0;
 }

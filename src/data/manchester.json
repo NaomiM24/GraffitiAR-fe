@@ -14,6 +14,16 @@
       "id": 3,
       "location": { "latitude": 53.47832, "longitude": -2.23991 },
       "user": "naomi"
+    },
+    {
+      "id": 4,
+      "location": { "latitude": 53.520703, "longitude": -2.2577895 },
+      "user": "naomi"
+    },
+    {
+      "id": 5,
+      "location": { "latitude": 53.520702899999996, "longitude": -2.25779 },
+      "user": "aj"
     }
   ]
 }
