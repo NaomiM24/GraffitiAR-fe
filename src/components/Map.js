@@ -22,7 +22,7 @@ class GMap extends Component {
   componentDidMount() {
     this.getGeoLocation();
     this.setState({ isMarkerShown: true });
-    // this.interval = setInterval(() => this.getGeoLocation(), 1000);
+    this.interval = setInterval(() => this.getGeoLocation(), 5000);
   }
 
   getGeoLocation = () => {
@@ -38,7 +38,6 @@ class GMap extends Component {
     }
   };
   render() {
-    console.log(this.state.currentLatLng);
     return (
       <GoogleMap
         defaultZoom={14}
@@ -60,7 +59,6 @@ class GMap extends Component {
               lng: place.location.longitude,
             }}
             onClick={() => {
-              console.log("marker");
               this.setState({ selectedPlace: place });
             }}
             icon={{
@@ -88,7 +86,6 @@ class GMap extends Component {
               lng: this.state.selectedPlace.location.longitude,
             }}
             onCloseClick={() => {
-              console.log("clicked");
               this.setState({ setSelectedPlace: null });
             }}
           >

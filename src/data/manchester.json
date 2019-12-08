@@ -24,6 +24,11 @@
       "id": 5,
       "location": { "latitude": 53.520702899999996, "longitude": -2.25779 },
       "user": "aj"
+    },
+    {
+      "id": 6,
+      "location": { "latitude": 53.352884800000005, "longitude": -2.1196813 },
+      "user": "harry"
     }
   ]
 }

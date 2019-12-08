@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import * as manchesterData from "../data/manchester";
 import CanvasCard from "./CanvasCard";
+import { getDistance } from "../utils/getDistance";
 
 class CanvasList extends Component {
   state = {
@@ -8,6 +9,7 @@ class CanvasList extends Component {
       lat: 0,
       lng: 0,
     },
+    nearbyMarkers: null,
   };
 
   componentDidMount() {
@@ -17,41 +19,51 @@ class CanvasList extends Component {
   getGeoLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
-        this.setState({
-          currentLatLng: {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude,
+        this.setState(
+          {
+            currentLatLng: {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude,
+            },
           },
-        });
+          () => {
+            this.getNearbyMarkers();
+          }
+        );
       });
     }
   };
+
+  getNearbyMarkers = () => {
+    const { currentLatLng } = this.state;
+    const nearbyMarkers = manchesterData.data.filter(marker => {
+      return (
+        getDistance(currentLatLng, {
+          lat: marker.location.latitude,
+          lng: marker.location.longitude,
+        }) < 100
+      );
+    });
+    this.setState({ nearbyMarkers });
+  };
+
   render() {
+    const { nearbyMarkers } = this.state;
     return (
       <>
         <h2>Graffiti in your location</h2>
-        <ul className="canvas-list">
-          {manchesterData.default.data.map(place => {
-            var radlat1 = (Math.PI * this.state.currentLatLng.lat) / 180;
-            var radlat2 = (Math.PI * place.location.latitude) / 180;
-            var theta = this.state.currentLatLng.lng - place.location.longitude;
-            var radtheta = (Math.PI * theta) / 180;
-            var dist =
-              Math.sin(radlat1) * Math.sin(radlat2) +
-              Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
-            dist = Math.acos(dist);
-            dist = (dist * 180) / Math.PI;
-            dist = dist * 60 * 1.609344;
-
-            if (dist < 0.05 && dist > -0.05) {
-              return (
-                <>
-                  <CanvasCard user={place.user} key={place.id} />
-                </>
-              );
-            }
-          })}
-        </ul>
+        <button onClick={this.getGeoLocation}>Refresh</button>
+        {nearbyMarkers === null ? (
+          <p>Loading...</p>
+        ) : nearbyMarkers.length !== 0 ? (
+          <ul className="canvas-list">
+            {nearbyMarkers.map(marker => {
+              return <CanvasCard user={marker.user} key={marker.id} />;
+            })}
+          </ul>
+        ) : (
+          <p>No markers nearby</p>
+        )}
       </>
     );
   }
