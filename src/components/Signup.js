@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import fire from "../config/Fire";
 import { Link, navigate } from "@reach/router";
+import * as api from "../api.js";
 
 class Signup extends Component {
   constructor(props) {
@@ -29,9 +30,11 @@ class Signup extends Component {
         .auth()
         .createUserWithEmailAndPassword(this.state.email, this.state.password)
         .then(data => {
-          console.log(
-            data.user.uid
-          ); /* send username and uid to back end database */
+          api.postUser({
+            firebase_id: data.user.uid,
+            username: this.state.username,
+            display_pic_url: "https://imgur.com/a/adw37ZP",
+          });
           navigate("/");
         })
         .catch(err => {
