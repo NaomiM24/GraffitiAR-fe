@@ -3,12 +3,33 @@ import Toggle from "./Toggle";
 import CanvasDraw from "react-canvas-draw";
 
 class CanvasCard extends Component {
+  state = {
+    votesAdded: 0,
+  };
+
+  handleVote = () => {
+    const { votesAdded } = this.state;
+    this.setState(currentState => {
+      if (currentState.votesAdded) {
+        return { votesAdded: 0 };
+      }
+      return { votesAdded: 1 };
+    });
+    if (votesAdded) {
+      updateVote(1);
+    } else {
+      updateVote(-1);
+    }
+  };
+
   render() {
+    const { graffiti } = this.props;
+    const { votesAdded } = this.state;
     return (
       <li className="canvas-card">
-        <p>posted by: {this.props.user}</p>
-        <p>posted on: date</p>
-        <p>likes: number</p>
+        <p>posted by: {graffiti.firebase_id}</p>
+        <p>likes: {graffiti.votes + votesAdded}</p>
+        <button onClick={this.handleVote}>Like</button>
         <Toggle buttonName="Show Graffiti">
           <CanvasDraw
             disabled
@@ -17,7 +38,7 @@ class CanvasCard extends Component {
             brushRadius={0}
             catenaryColor={"#FFFFFFFF"}
             ref={canvasDraw => (this.loadableCanvas = canvasDraw)}
-            saveData={localStorage.getItem("savedDrawing")}
+            saveData={graffiti.drawing_string}
           />
         </Toggle>
       </li>

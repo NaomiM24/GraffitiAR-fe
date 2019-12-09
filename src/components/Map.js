@@ -12,7 +12,6 @@ import mapStyle from "../data/mapStyle";
 class GMap extends Component {
   state = {
     selectedPlace: null,
-    setSelectedPlace: null,
     currentLatLng: {
       lat: 0,
       lng: 0,
@@ -37,13 +36,15 @@ class GMap extends Component {
       });
     }
   };
+
   render() {
+    const { currentLatLng, selectedPlace, isMarkerShown } = this.state;
     return (
       <GoogleMap
         defaultZoom={14}
         center={{
-          lat: this.state.currentLatLng.lat,
-          lng: this.state.currentLatLng.lng,
+          lat: currentLatLng.lat,
+          lng: currentLatLng.lng,
         }}
         defaultOptions={{
           styles: mapStyle,
@@ -51,15 +52,15 @@ class GMap extends Component {
           streetViewControl: false,
         }}
       >
-        {manchesterData.default.data.map(place => (
+        {manchesterData.data.map(marker => (
           <Marker
-            key={place.id}
+            key={marker.graffiti_id}
             position={{
-              lat: place.location.latitude,
-              lng: place.location.longitude,
+              lat: marker.geo_lat,
+              lng: marker.geo_long,
             }}
             onClick={() => {
-              this.setState({ selectedPlace: place });
+              this.setState({ selectedPlace: marker });
             }}
             icon={{
               url: "/spray-can.png",
@@ -67,11 +68,11 @@ class GMap extends Component {
             }}
           />
         ))}
-        {this.state.isMarkerShown && (
+        {isMarkerShown && (
           <Marker
             position={{
-              lat: this.state.currentLatLng.lat,
-              lng: this.state.currentLatLng.lng,
+              lat: currentLatLng.lat,
+              lng: currentLatLng.lng,
             }}
             icon={{
               url: "/user-location.png",
@@ -79,18 +80,16 @@ class GMap extends Component {
             }}
           />
         )}
-        {this.state.selectedPlace && (
+        {selectedPlace && (
           <InfoWindow
             position={{
-              lat: this.state.selectedPlace.location.latitude,
-              lng: this.state.selectedPlace.location.longitude,
+              lat: selectedPlace.geo_lat,
+              lng: selectedPlace.geo_long,
             }}
-            onCloseClick={() => {
-              this.setState({ setSelectedPlace: null });
-            }}
+            onCloseClick={() => this.setState({ selectedPlace: null })}
           >
             <div>
-              <p className="marker-user">{this.state.selectedPlace.user}</p>
+              <p className="marker-user">{selectedPlace.firebase_id}</p>
             </div>
           </InfoWindow>
         )}
@@ -113,15 +112,3 @@ export default function Map() {
     </div>
   );
 }
-// var R = 6371e3; // metres
-// var φ1 = lat1.toRadians();
-// var φ2 = lat2.toRadians();
-// var Δφ = (lat2-lat1).toRadians();
-// var Δλ = (lon2-lon1).toRadians();
-
-// var a = Math.sin(Δφ/2) * Math.sin(Δφ/2) +
-//         Math.cos(φ1) * Math.cos(φ2) *
-//         Math.sin(Δλ/2) * Math.sin(Δλ/2);
-// var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-
-// var d = R * c;
