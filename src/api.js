@@ -14,9 +14,14 @@ export const postCanvas = (firebase_id, drawing_str, geo_lat, geo_long) => {
     geo_long,
     votes: 0,
   });
-
 };
 
 export const getAllGraffiti = () => {
   return axios.get(`${baseURL}/graffiti`);
+};
+
+export const updateVote = (votes, graffiti_id) => {
+  return axios.put(`${baseURL}/graffiti/${graffiti_id}`, {
+    votes,
+  });
 };
