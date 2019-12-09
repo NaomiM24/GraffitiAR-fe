@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import CanvasDraw from "react-canvas-draw";
-// import classNames from "./index.css";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
+import * as api from "../api";
 
 ReactDOM.render(<CanvasDraw />, document.getElementById("root"));
 
@@ -11,14 +11,45 @@ export default class CanvasTest extends Component {
   state = {
     color: "#0000ff",
     dimension: window.innerWidth * 0.9,
-    // height: window.innerHeight * 0.6,
     brushRadius: 4,
     min: 1,
     max: 20,
+    currentLatLng: {
+      lat: 0,
+      lng: 0,
+    },
+    posted: false,
+    postErr: false,
   };
+  componentDidMount() {
+    this.getGeoLocation();
+  }
+
+  getGeoLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(position => {
+        this.setState({
+          currentLatLng: {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          },
+        });
+      });
+    }
+  };
+
   render() {
+    const { uid } = this.props;
     return (
       <main>
+        {this.state.posted && (
+          <p className="posted-graffiti">
+            Your graffiti has been successfully posted!
+          </p>
+        )}
+        {this.state.postErr && (
+          <p className="posted-graffiti-error">Error! Please try again later</p>
+        )}
         <button
           onClick={this.handleColorChange}
           name="#0000ff"
@@ -80,10 +111,28 @@ export default class CanvasTest extends Component {
           </button>
           <button
             onClick={() => {
-              localStorage.setItem(
-                "savedDrawing",
-                this.saveableCanvas.getSaveData()
-              );
+              api
+                .postCanvas(
+                  uid,
+                  this.saveableCanvas.getSaveData(),
+                  this.state.currentLatLng.lat,
+                  this.state.currentLatLng.lng
+                )
+                .then(() => {
+                  this.setState({ posted: true }, () => {
+                    setTimeout(() => {
+                      this.setState({ posted: false });
+                    }, 3000);
+                  });
+                  this.saveableCanvas.clear();
+                })
+                .catch(err => {
+                  this.setState({ postErr: true }, () => {
+                    setTimeout(() => {
+                      this.setState({ postErr: false });
+                    }, 3000);
+                  });
+                });
             }}
           >
             <img src="/paper-plane.png" alt="send" className="canvas-change" />

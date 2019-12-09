@@ -45,7 +45,11 @@ class App extends Component {
             <Header className="App-header" />
             <NavBar className="App-navbar" />
             <Router className="App-router">
-              <CanvasTest path="/canvas" className="App-router" />
+              <CanvasTest
+                path="/canvas"
+                className="App-router"
+                uid={this.state.user.uid}
+              />
               <Map path="/" className="App-router" />
               <CanvasList path="/view" className="App-router" />
             </Router>

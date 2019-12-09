@@ -1,34 +1,20 @@
 {
   "data": [
     {
-      "id": 1,
-      "location": { "latitude": 53.48523, "longitude": -2.21837 },
-      "user": "aj"
+      "graffiti_id": 1,
+      "firebase_id": "AIzaSyD5JPJ3R9vJX52QpJQAL5ndR0YaGerCyic",
+      "drawing_string": "...",
+      "geo_lat": 53.485946999999996,
+      "geo_long": -2.2397089,
+      "votes": 0
     },
     {
-      "id": 2,
-      "location": { "latitude": 53.476521, "longitude": -2.23021 },
-      "user": "jon"
-    },
-    {
-      "id": 3,
-      "location": { "latitude": 53.47832, "longitude": -2.23991 },
-      "user": "naomi"
-    },
-    {
-      "id": 4,
-      "location": { "latitude": 53.520703, "longitude": -2.2577895 },
-      "user": "naomi"
-    },
-    {
-      "id": 5,
-      "location": { "latitude": 53.520702899999996, "longitude": -2.25779 },
-      "user": "aj"
-    },
-    {
-      "id": 6,
-      "location": { "latitude": 53.352884800000005, "longitude": -2.1196813 },
-      "user": "harry"
+      "graffiti_id": 2,
+      "firebase_id": "AIzaSyD5JPJ3R9vJX52QpJQAL5ndR0YaGerCyic",
+      "drawing_string": "...",
+      "geo_lat": -2.1234,
+      "geo_long": 53.4567,
+      "votes": 0
     }
   ]
 }
