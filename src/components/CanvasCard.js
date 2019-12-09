@@ -15,11 +15,11 @@ class CanvasCard extends Component {
       }
       return { votesAdded: 1 };
     });
-    if (votesAdded) {
-      updateVote(1);
-    } else {
-      updateVote(-1);
-    }
+    // if (votesAdded) {
+    //   updateVote(1);
+    // } else {
+    //   updateVote(-1);
+    // }
   };
 
   render() {
