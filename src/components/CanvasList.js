@@ -25,6 +25,7 @@ class CanvasList extends Component {
               lat: position.coords.latitude,
               lng: position.coords.longitude,
             },
+            nearbyMarkers: null,
           },
           () => {
             this.getNearbyMarkers();
@@ -39,8 +40,8 @@ class CanvasList extends Component {
     const nearbyMarkers = manchesterData.data.filter(marker => {
       return (
         getDistance(currentLatLng, {
-          lat: marker.location.latitude,
-          lng: marker.location.longitude,
+          lat: marker.geo_lat,
+          lng: marker.geo_long,
         }) < 100
       );
     });
@@ -58,7 +59,7 @@ class CanvasList extends Component {
         ) : nearbyMarkers.length !== 0 ? (
           <ul className="canvas-list">
             {nearbyMarkers.map(marker => {
-              return <CanvasCard user={marker.user} key={marker.id} />;
+              return <CanvasCard graffiti={marker} key={marker.graffiti_id} />;
             })}
           </ul>
         ) : (
