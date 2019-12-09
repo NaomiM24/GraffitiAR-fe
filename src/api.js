@@ -25,3 +25,7 @@ export const updateVote = (votes, graffiti_id) => {
     votes,
   });
 };
+
+export const deleteGraffiti = graffiti_id => {
+  return axios.delete(`${baseURL}/graffiti/${graffiti_id}`);
+};

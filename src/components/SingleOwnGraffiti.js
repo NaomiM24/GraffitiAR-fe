@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import CanvasDraw from "react-canvas-draw";
+import * as api from "../api";
 
 export default class SingleOwnGraffiti extends Component {
   render() {
@@ -15,7 +16,17 @@ export default class SingleOwnGraffiti extends Component {
           ref={canvasDraw => (this.loadableCanvas = canvasDraw)}
           saveData={graffiti.drawing_str}
         />
+        <button className="delete-graffiti" onClick={this.handleDelete}>
+          Delete
+        </button>
       </li>
     );
   }
+  handleDelete = () => {
+    const { graffiti } = this.props;
+    api
+      .deleteGraffiti(graffiti.id)
+      .then(() => console.log("graffiti deleted"))
+      .catch(err => console.log(err));
+  };
 }
