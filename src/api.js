@@ -16,3 +16,7 @@ export const postCanvas = (firebase_id, drawing_str, geo_lat, geo_long) => {
   });
 
 };
+
+export const getAllGraffiti = () => {
+  return axios.get(`${baseURL}/graffiti`);
+};
