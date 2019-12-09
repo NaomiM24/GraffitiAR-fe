@@ -6,7 +6,7 @@ import {
   Marker,
   InfoWindow,
 } from "react-google-maps";
-import * as manchesterData from "../data/manchester";
+import * as api from "../api";
 import mapStyle from "../data/mapStyle";
 
 class GMap extends Component {
@@ -17,11 +17,15 @@ class GMap extends Component {
       lng: 0,
     },
     isMarkerShown: false,
+    markers: [],
   };
   componentDidMount() {
     this.getGeoLocation();
     this.setState({ isMarkerShown: true });
     this.interval = setInterval(() => this.getGeoLocation(), 5000);
+    api.getAllGraffiti().then(({ data }) => {
+      this.setState({ markers: data });
+    });
   }
 
   getGeoLocation = () => {
@@ -38,7 +42,7 @@ class GMap extends Component {
   };
 
   render() {
-    const { currentLatLng, selectedPlace, isMarkerShown } = this.state;
+    const { currentLatLng, selectedPlace, isMarkerShown, markers } = this.state;
     return (
       <GoogleMap
         defaultZoom={14}
@@ -52,22 +56,24 @@ class GMap extends Component {
           streetViewControl: false,
         }}
       >
-        {manchesterData.data.map(marker => (
-          <Marker
-            key={marker.graffiti_id}
-            position={{
-              lat: marker.geo_lat,
-              lng: marker.geo_long,
-            }}
-            onClick={() => {
-              this.setState({ selectedPlace: marker });
-            }}
-            icon={{
-              url: "/spray-can.png",
-              scaledSize: new window.google.maps.Size(25, 25),
-            }}
-          />
-        ))}
+        {markers.map(marker => {
+          return (
+            <Marker
+              key={marker.id}
+              position={{
+                lat: marker.geo_lat,
+                lng: marker.geo_long,
+              }}
+              onClick={() => {
+                this.setState({ selectedPlace: marker });
+              }}
+              icon={{
+                url: "/spray-can.png",
+                scaledSize: new window.google.maps.Size(25, 25),
+              }}
+            />
+          );
+        })}
         {isMarkerShown && (
           <Marker
             position={{
