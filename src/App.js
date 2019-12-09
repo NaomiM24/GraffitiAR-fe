@@ -42,7 +42,7 @@ class App extends Component {
           </Router>
         ) : (
           <main className="App-main">
-            <Header className="App-header" />
+            <Header className="App-header" uid={this.state.user.uid} />
             <NavBar className="App-navbar" />
             <Router className="App-router">
               <CanvasTest

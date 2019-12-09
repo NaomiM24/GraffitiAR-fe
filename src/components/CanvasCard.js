@@ -8,7 +8,7 @@ class CanvasCard extends Component {
   };
 
   handleVote = () => {
-    const { votesAdded } = this.state;
+    // const { votesAdded } = this.state;
     this.setState(currentState => {
       if (currentState.votesAdded) {
         return { votesAdded: 0 };

@@ -24,6 +24,7 @@ class SettingsContainer extends Component {
         <Settings
           handleClick={this.handleClick}
           settingsVisibility={this.state.visible}
+          uid={this.props.uid}
         />
       </>
     );
