@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./Settings.css";
 import fire from "../config/Fire";
 import AllOwnGraffiti from "./AllOwnGraffiti";
+import { Link } from "@reach/router";
 
 class Settings extends Component {
   constructor(props) {
@@ -29,7 +30,9 @@ class Settings extends Component {
           <img src="./close.png" alt="close" />
         </button>
         <h1>Settings</h1>
-        <button onClick={this.logout}>Logout</button>
+        <Link to="/">
+          <button onClick={this.logout}>Logout</button>
+        </Link>
         <p>Change Username</p>
         <button onClick={this.handleClick}>View My Graffiti</button>
         <AllOwnGraffiti
