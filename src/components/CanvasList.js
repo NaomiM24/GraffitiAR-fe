@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import * as manchesterData from "../data/manchester";
+import * as api from "../api";
 import CanvasCard from "./CanvasCard";
 import { getDistance } from "../utils/getDistance";
 
@@ -37,15 +37,17 @@ class CanvasList extends Component {
 
   getNearbyMarkers = () => {
     const { currentLatLng } = this.state;
-    const nearbyMarkers = manchesterData.data.filter(marker => {
-      return (
-        getDistance(currentLatLng, {
-          lat: marker.geo_lat,
-          lng: marker.geo_long,
-        }) < 100
-      );
+    api.getAllGraffiti().then(({ data }) => {
+      const nearbyMarkers = data.filter(marker => {
+        return (
+          getDistance(currentLatLng, {
+            lat: marker.geo_lat,
+            lng: marker.geo_long,
+          }) < 100
+        );
+      });
+      this.setState({ nearbyMarkers });
     });
-    this.setState({ nearbyMarkers });
   };
 
   render() {
@@ -59,7 +61,7 @@ class CanvasList extends Component {
         ) : nearbyMarkers.length !== 0 ? (
           <ul className="canvas-list">
             {nearbyMarkers.map(marker => {
-              return <CanvasCard graffiti={marker} key={marker.graffiti_id} />;
+              return <CanvasCard graffiti={marker} key={marker.id} />;
             })}
           </ul>
         ) : (

@@ -1,25 +1,26 @@
 import React, { Component } from "react";
 import Toggle from "./Toggle";
 import CanvasDraw from "react-canvas-draw";
+import * as api from "../api";
 
 class CanvasCard extends Component {
   state = {
     votesAdded: 0,
   };
 
-  handleVote = () => {
-    const { votesAdded } = this.state;
-    this.setState(currentState => {
-      if (currentState.votesAdded) {
-        return { votesAdded: 0 };
+  handleVote = (votes, id) => {
+    this.setState(
+      currentState => {
+        if (currentState.votesAdded) {
+          return { votesAdded: 0, hasVoted: true };
+        }
+        return { votesAdded: 1, hasVoted: true };
+      },
+      () => {
+        const { votesAdded } = this.state;
+        api.updateVote(votes + votesAdded, id);
       }
-      return { votesAdded: 1 };
-    });
-    // if (votesAdded) {
-    //   updateVote(1);
-    // } else {
-    //   updateVote(-1);
-    // }
+    );
   };
 
   render() {
@@ -29,7 +30,9 @@ class CanvasCard extends Component {
       <li className="canvas-card">
         <p>posted by: {graffiti.firebase_id}</p>
         <p>likes: {graffiti.votes + votesAdded}</p>
-        <button onClick={this.handleVote}>Like</button>
+        <button onClick={() => this.handleVote(graffiti.votes, graffiti.id)}>
+          Like
+        </button>
         <Toggle buttonName="Show Graffiti">
           <CanvasDraw
             disabled
@@ -38,7 +41,7 @@ class CanvasCard extends Component {
             brushRadius={0}
             catenaryColor={"#FFFFFFFF"}
             ref={canvasDraw => (this.loadableCanvas = canvasDraw)}
-            saveData={graffiti.drawing_string}
+            saveData={graffiti.drawing_str}
           />
         </Toggle>
       </li>
