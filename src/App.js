@@ -9,6 +9,7 @@ import Login from "./components/Login";
 import Header from "./components/Header";
 import Signup from "./components/Signup";
 import CanvasList from "./components/CanvasList";
+import CanvasDisplayer from "./components/CanvasDisplayer";
 
 class App extends Component {
   constructor(props) {
@@ -42,16 +43,17 @@ class App extends Component {
           </Router>
         ) : (
           <main className="App-main">
-            <Header className="App-header" />
+            <Header className="App-header" user={user} uid={user.uid} />
             <NavBar className="App-navbar" />
             <Router className="App-router">
               <CanvasTest
                 path="/canvas"
                 className="App-router"
-                uid={this.state.user.uid}
+                uid={this.state.user.uid} // can do directly uid={user.uid} as already destructured
               />
               <Map path="/" className="App-router" />
               <CanvasList path="/view" className="App-router" />
+              <CanvasDisplayer path="/view/:id" />
             </Router>
           </main>
         )}

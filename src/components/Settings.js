@@ -1,19 +1,29 @@
 import React, { Component } from "react";
 import "./Settings.css";
 import fire from "../config/Fire";
+import Toggle from "./Toggle";
+import ChangeUsername from "./ChangeUsername";
+import ChangeDisplayPicture from "./ChangeDisplayPicture";
+import AllOwnGraffiti from "./AllOwnGraffiti";
+import { Link } from "@reach/router";
+import * as api from "../api";
 
 class Settings extends Component {
   constructor(props) {
     super(props);
     this.logout = this.logout.bind(this);
   }
+  state = {
+    graffitiVisible: false,
+  };
 
   logout() {
     fire.auth().signOut();
   }
 
   render() {
-    var visibility = "hide";
+
+    let visibility = "hide";
 
     if (this.props.settingsVisibility) {
       visibility = "show";
@@ -25,12 +35,61 @@ class Settings extends Component {
           <img src="./close.png" alt="close" />
         </button>
         <h1>Settings</h1>
-        <button onClick={this.logout}>Logout</button>
-        <p>Change Username</p>
-        <p>View My Graffiti</p>
+      
+        <Link to="/">
+          <button onClick={this.logout}>Logout</button>
+        </Link>
+        <Toggle buttonName="Change Username">
+          <ChangeUsername uid={this.props.uid} />
+        </Toggle>
+        <Toggle buttonName="Change Display Picture">
+          <ChangeDisplayPicture uid={this.props.uid} />
+        </Toggle>
+        <button onClick={this.handleClick}>View Your Graffiti</button>
+        <AllOwnGraffiti
+          handleClick={this.handleClick}
+          graffitiVisibility={this.state.graffitiVisible}
+          uid={this.props.uid}
+        />
+        <Link to="/">
+          <button onClick={this.handleDeleteAccount}>
+            Delete Your Account :(
+          </button>
+        </Link>
       </div>
     );
   }
+  handleClick = e => {
+    this.toggleAllGraffiti();
+  };
+
+  toggleAllGraffiti = () => {
+    this.setState({
+      graffitiVisible: !this.state.graffitiVisible,
+    });
+  };
+
+  handleDeleteAccount = () => {
+    let verify = window.confirm(
+      "Are you sure you want to delete your account? All your graffiti will be washed away!"
+    );
+    if (verify) {
+      this.handleConfirmedDelete();
+    }
+  };
+
+  handleConfirmedDelete = () => {
+    const firebase_id = this.props.uid;
+    var user = fire.auth().currentUser;
+    api
+      .deleteAccount(firebase_id)
+      .then(() => {
+        console.log("user db account deleted");
+        user.delete();
+      })
+      .then(() => console.log("firebase account deleted"))
+      .catch(err => console.log(err));
+  };
 }
 
 export default Settings;

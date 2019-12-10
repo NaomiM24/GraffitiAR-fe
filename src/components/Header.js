@@ -5,8 +5,8 @@ class Header extends Component {
   render() {
     return (
       <header>
-        <h1>geoGraffiti</h1>
-        <SettingsContainer />
+        <h1>geoGRAFFITI</h1>
+        <SettingsContainer uid={this.props.uid} />
       </header>
     );
   }

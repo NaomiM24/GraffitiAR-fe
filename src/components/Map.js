@@ -8,6 +8,7 @@ import {
 } from "react-google-maps";
 import * as api from "../api";
 import mapStyle from "../data/mapStyle";
+import MarkerLabel from "./MarkerLabel";
 
 class GMap extends Component {
   state = {
@@ -94,9 +95,10 @@ class GMap extends Component {
             }}
             onCloseClick={() => this.setState({ selectedPlace: null })}
           >
-            <div>
-              <p className="marker-user">{selectedPlace.firebase_id}</p>
-            </div>
+            <MarkerLabel
+              user_id={selectedPlace.firebase_id}
+              graffiti_id={selectedPlace.id}
+            />
           </InfoWindow>
         )}
       </GoogleMap>
