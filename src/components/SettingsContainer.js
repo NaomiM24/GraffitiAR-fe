@@ -18,12 +18,16 @@ class SettingsContainer extends Component {
   };
 
   render() {
+    console.log("SettingsContainer user", this.props.user);
+    console.log("SettingsContainer user.uid", this.props.uid);
     return (
       <>
         <SettingsButton handleClick={this.handleClick} />
         <Settings
           handleClick={this.handleClick}
           settingsVisibility={this.state.visible}
+          user={this.props.user}
+          uid={this.props.uid}
         />
       </>
     );
