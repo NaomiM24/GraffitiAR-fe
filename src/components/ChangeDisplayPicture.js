@@ -18,7 +18,12 @@ class ChangeDisplayPicture extends Component {
   }
 
   changeDisplayPictureByFirebaseID() {
-    api.putDisplayPicByFirebaseID();
+    api.putDisplayPicByFirebaseID(
+      {
+        display_pic_url: this.state.newDisplayPicture,
+      },
+      this.props.uid
+    );
   }
 
   render() {
@@ -32,12 +37,14 @@ class ChangeDisplayPicture extends Component {
             <input
               value={this.state.newDisplayPicture}
               onChange={this.handleChange}
-              type="image"
-              name="display picture"
+              type="url"
+              name="newDisplayPicture"
               required
             />
           </label>
-          <button onClick={this.changeUsernameByFirebaseID}>Confirm</button>
+          <button onClick={this.changeDisplayPictureByFirebaseID()}>
+            Confirm
+          </button>
         </form>
       </div>
     );
