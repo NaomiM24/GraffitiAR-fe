@@ -25,3 +25,7 @@ export const updateVote = (votes, graffiti_id) => {
     votes,
   });
 };
+
+export const getGraffitiById = id => {
+  return axios.get(`${baseURL}/graffiti/${id}`);
+};
