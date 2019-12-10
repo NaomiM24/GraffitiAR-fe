@@ -34,7 +34,11 @@ export const getGraffitiById = id => {
   return axios.get(`${baseURL}/graffiti/${id}`);
 };
 
+export const getUserById = id => {
+  return axios.get(`${baseURL}/users/${id}`);
+
 export const deleteAccount = firebase_id => {
   console.log(firebase_id);
   return axios.delete(`${baseURL}/users/del/${firebase_id}`);
+
 };
