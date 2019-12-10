@@ -9,6 +9,7 @@ import Login from "./components/Login";
 import Header from "./components/Header";
 import Signup from "./components/Signup";
 import CanvasList from "./components/CanvasList";
+import CanvasDisplayer from "./components/CanvasDisplayer";
 
 class App extends Component {
   constructor(props) {
@@ -52,6 +53,7 @@ class App extends Component {
               />
               <Map path="/" className="App-router" />
               <CanvasList path="/view" className="App-router" />
+              <CanvasDisplayer path="/view/:id" />
             </Router>
           </main>
         )}

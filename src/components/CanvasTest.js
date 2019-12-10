@@ -20,6 +20,7 @@ export default class CanvasTest extends Component {
     },
     posted: false,
     postErr: false,
+    submitBlank: false,
   };
   componentDidMount() {
     this.getGeoLocation();
@@ -46,6 +47,9 @@ export default class CanvasTest extends Component {
           <p className="posted-graffiti">
             Your graffiti has been successfully posted!
           </p>
+        )}
+        {this.state.submitBlank && (
+          <p className="blank-error">Draw on canvas to submit!</p>
         )}
         {this.state.postErr && (
           <p className="posted-graffiti-error">Error! Please try again later</p>
@@ -111,28 +115,37 @@ export default class CanvasTest extends Component {
           </button>
           <button
             onClick={() => {
-              api
-                .postCanvas(
-                  uid,
-                  this.saveableCanvas.getSaveData(),
-                  this.state.currentLatLng.lat,
-                  this.state.currentLatLng.lng
-                )
-                .then(() => {
-                  this.setState({ posted: true }, () => {
-                    setTimeout(() => {
-                      this.setState({ posted: false });
-                    }, 3000);
-                  });
-                  this.saveableCanvas.clear();
-                })
-                .catch(err => {
-                  this.setState({ postErr: true }, () => {
-                    setTimeout(() => {
-                      this.setState({ postErr: false });
-                    }, 3000);
-                  });
+              const picture = this.saveableCanvas.getSaveData();
+              this.saveableCanvas.clear();
+              if (JSON.parse(picture).lines.length === 0) {
+                this.setState({ submitBlank: true }, () => {
+                  setTimeout(() => {
+                    this.setState({ submitBlank: false });
+                  }, 3000);
                 });
+              } else {
+                api
+                  .postCanvas(
+                    uid,
+                    picture,
+                    this.state.currentLatLng.lat,
+                    this.state.currentLatLng.lng
+                  )
+                  .then(() => {
+                    this.setState({ posted: true }, () => {
+                      setTimeout(() => {
+                        this.setState({ posted: false });
+                      }, 3000);
+                    });
+                  })
+                  .catch(err => {
+                    this.setState({ postErr: true }, () => {
+                      setTimeout(() => {
+                        this.setState({ postErr: false });
+                      }, 3000);
+                    });
+                  });
+              }
             }}
           >
             <img src="/paper-plane.png" alt="send" className="canvas-change" />

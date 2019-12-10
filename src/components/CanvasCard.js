@@ -1,46 +1,45 @@
 import React, { Component } from "react";
-import Toggle from "./Toggle";
-import CanvasDraw from "react-canvas-draw";
+import { Link } from "@reach/router";
+import * as api from "../api";
 
 class CanvasCard extends Component {
   state = {
-    votesAdded: 0,
+    username: null,
+    isLoading: true,
+    err: false,
   };
 
-  handleVote = () => {
-    const { votesAdded } = this.state;
-    this.setState(currentState => {
-      if (currentState.votesAdded) {
-        return { votesAdded: 0 };
-      }
-      return { votesAdded: 1 };
-    });
-    // if (votesAdded) {
-    //   updateVote(1);
-    // } else {
-    //   updateVote(-1);
-    // }
-  };
+  componentDidMount() {
+    const { graffiti } = this.props;
+    api
+      .getUserById(graffiti.firebase_id)
+      .then(({ data }) => {
+        this.setState({ username: data.username, isLoading: false });
+      })
+      .catch(() => {
+        this.setState({
+          isLoading: false,
+          err: "Could not load at this time",
+        });
+      });
+  }
 
   render() {
     const { graffiti } = this.props;
-    const { votesAdded } = this.state;
+    const { username, isLoading, err } = this.state;
     return (
       <li className="canvas-card">
-        <p>posted by: {graffiti.firebase_id}</p>
-        <p>likes: {graffiti.votes + votesAdded}</p>
-        <button onClick={this.handleVote}>Like</button>
-        <Toggle buttonName="Show Graffiti">
-          <CanvasDraw
-            disabled
-            hideGrid
-            lazyRadius={0}
-            brushRadius={0}
-            catenaryColor={"#FFFFFFFF"}
-            ref={canvasDraw => (this.loadableCanvas = canvasDraw)}
-            saveData={graffiti.drawing_string}
-          />
-        </Toggle>
+        {isLoading ? (
+          <p>Loading...</p>
+        ) : err ? (
+          <p>{err}</p>
+        ) : (
+          <>
+            <p>posted by: {username}</p>
+            <p>likes: {graffiti.votes}</p>
+            <Link to={`/view/${graffiti.id}`}>View Graffiti</Link>
+          </>
+        )}
       </li>
     );
   }
