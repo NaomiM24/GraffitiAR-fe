@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import "./Settings.css";
 import fire from "../config/Fire";
 import Toggle from "./Toggle";
+import ChangeUsername from "./ChangeUsername";
+import ChangeDisplayPicture from "./ChangeDisplayPicture";
 
 class Settings extends Component {
   constructor(props) {
@@ -14,7 +16,8 @@ class Settings extends Component {
   }
 
   render() {
-    console.log("settings", this.props.uid);
+    console.log("Settings user", this.props.user);
+    console.log("Settings uid", this.props.uid);
     var visibility = "hide";
     if (this.props.settingsVisibility) {
       visibility = "show";
@@ -28,10 +31,10 @@ class Settings extends Component {
         <h1>Settings</h1>
         <button onClick={this.logout}>Logout</button>
         <Toggle buttonName="Change Username">
-          Inside Toggle Change Username
+          <ChangeUsername user={this.props.user} uid={this.props.uid} />
         </Toggle>
         <Toggle buttonName="Change Display Picture">
-          Inside Toggle Change Display Picture
+          <ChangeDisplayPicture user={this.props.user} uid={this.props.uid} />
         </Toggle>
         <p>View My Graffiti</p>
       </div>
