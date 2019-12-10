@@ -2,10 +2,15 @@
 font-family: 'Barrio', cursive;
 font-family: 'Monofett', cursive; */
 
+@font-face {
+  font-family: "bombing";
+  src: url("/bombing.ttf");
+}
+
 .App {
   /* margin: 0; */
   text-align: center;
-  height: 95vh;
+  height: calc(var(--vh, 1vh) * 100);
   background-color: rgba(84, 84, 179, 0.5);
 }
 
@@ -155,7 +160,14 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  height: calc(var(--vh, 1vh) * 100);
   width: 100vw;
+  background-image: url("/bricks.jpg");
+  background-repeat: repeat;
+}
+.login h1 {
+  font-family: "bombing";
+  font-size: 100px;
 }
 
 .login form {
