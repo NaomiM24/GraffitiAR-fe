@@ -1,30 +1,36 @@
 import React, { Component } from "react";
 import "./Settings.css";
 import fire from "../config/Fire";
-import * as api from "../api.js"
+import * as api from "../api.js";
+import Toggle from "./Toggle";
 
 class Settings extends Component {
   constructor(props) {
     super(props);
     this.logout = this.logout.bind(this);
-    this.changeUsernameByFirebaseID = this.changeUsernameByFirebaseID.bind(this)  
+    // this.changeUsernameByFirebaseID = this.changeUsernameByFirebaseID.bind(
+    //   this
+    // );
+    // this.changeDisplayPicByFirebaseID = this.changeDisplayPicByFirebaseID.bind(
+    //   this
+    // );
   }
 
   logout() {
     fire.auth().signOut();
   }
 
-  changeUsernameByFirebaseID = () => {
-    const { firebase_id } = this.props.uid;
-    console.log("changeUsername", firebase_id);
-    api.putUsernameByFirebaseID({username: newUsername}, firebase_id)
-  };
+  // changeUsernameByFirebaseID = () => {
+  //   const { firebase_id } = this.props.uid;
+  //   console.log("changeUsername", firebase_id);
+  //   api.putUsernameByFirebaseID({username: newUsername}, firebase_id)
+  // };
 
-  changeDisplayPicByFirebaseID = () => {
-    const { firebase_id } = this.props.uid
-    console.log("changeDisplayPic", firebase_id)
-    api.putDisplayPicByFirebaseID({display_pic_url, newDisplayPic}, firebase_id)
-  }
+  // changeDisplayPicByFirebaseID = () => {
+  //   const { firebase_id } = this.props.uid
+  //   console.log("changeDisplayPic", firebase_id)
+  //   api.putDisplayPicByFirebaseID({display_pic_url, newDisplayPic}, firebase_id)
+  // }
 
   render() {
     console.log("settings", this.props.uid);
@@ -40,9 +46,12 @@ class Settings extends Component {
         </button>
         <h1>Settings</h1>
         <button onClick={this.logout}>Logout</button>
-        <button onClick={this.changeUsernameByFirebaseID}>Change username</button>
-        {/* <p>Change Username</p> */}
-        <button onClick={this.changeDisplayPicByFirebaseID}>Change display picture</button>
+        <Toggle buttonName="Change Username">
+          Inside Toggle Change Username
+        </Toggle>
+        <Toggle buttonName="Change Display Picture">
+          Inside Toggle Change Display Picture
+        </Toggle>
         <p>View My Graffiti</p>
       </div>
     );
