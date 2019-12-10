@@ -4,10 +4,10 @@ import SingleOwnGraffiti from "./SingleOwnGraffiti";
 
 export default class AllOwnGraffiti extends Component {
   state = {
-    myGraffiti: [],
+    myGraffiti: null,
   };
 
-  componentDidMount() {
+  componentDidUpdate() {
     api.getAllGraffiti().then(({ data }) => {
       const filteredData = data.filter(
         graffiti => graffiti.firebase_id === this.props.uid
@@ -26,15 +26,21 @@ export default class AllOwnGraffiti extends Component {
         <button onClick={this.props.handleClick}>
           <img src="./close.png" alt="close" />
         </button>
-        <h1>All Your Graffiti</h1>
-        <ul>
-          {myGraffiti &&
-            myGraffiti.map(graffiti => {
-              return (
-                <SingleOwnGraffiti graffiti={graffiti} key={graffiti.id} />
-              );
-            })}
-        </ul>
+        <h2>All Your Graffiti</h2>
+        {myGraffiti === null ? (
+          <p>loading...</p>
+        ) : myGraffiti.length !== 0 ? (
+          <ul>
+            {myGraffiti &&
+              myGraffiti.map(graffiti => {
+                return (
+                  <SingleOwnGraffiti graffiti={graffiti} key={graffiti.id} />
+                );
+              })}
+          </ul>
+        ) : (
+          <p>You haven't posted any graffiti yet</p>
+        )}
       </div>
     );
   }
