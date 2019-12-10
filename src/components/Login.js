@@ -33,7 +33,9 @@ class Login extends Component {
     return (
       <div className="login">
         <div className="login-tile">
-          <h1>geoGRAFFITI</h1>
+          <h1>
+            <span className="geo">geo</span>GRAFFITI
+          </h1>
           <form>
             <label>
               Email address:{" "}
