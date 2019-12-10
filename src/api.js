@@ -20,14 +20,16 @@ export const getAllGraffiti = () => {
   return axios.get(`${baseURL}/graffiti`);
 };
 
-export const putUsernameByFirebaseID = (newUsername, firebase_id) => {
-  return axios.put(`${baseURL}/users/change_name/${firebase_id}`, {
-    username: newUsername,
-  });
+export const putUsernameByFirebaseID = (newUsernameObject, firebase_id) => {
+  return axios.put(
+    `${baseURL}/users/change_name/${firebase_id}`,
+    newUsernameObject
+  );
 };
 
-export const putDisplayPicByFirebaseID = (newDisplayPic, firebase_id) => {
-  return axios.put(`${baseURL}/users/change_pic/${firebase_id}`, {
-    display_pic_url: newDisplayPic,
-  });
+export const putDisplayPicByFirebaseID = (newDisplayPicObject, firebase_id) => {
+  return axios.put(
+    `${baseURL}/users/change_pic/${firebase_id}`,
+    newDisplayPicObject
+  );
 };
