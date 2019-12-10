@@ -124,12 +124,14 @@ export default class CanvasTest extends Component {
                   }, 3000);
                 });
               } else {
+                let time = new Date().toLocaleDateString();
                 api
                   .postCanvas(
                     uid,
                     picture,
                     this.state.currentLatLng.lat,
-                    this.state.currentLatLng.lng
+                    this.state.currentLatLng.lng,
+                    time
                   )
                   .then(() => {
                     this.setState({ posted: true }, () => {
