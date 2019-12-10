@@ -47,60 +47,62 @@ class Signup extends Component {
   render() {
     return (
       <div className="login">
-        <h1>Graffiti ARtist</h1>
-        <form>
-          <label>
-            Email address
-            <input
-              value={this.state.email}
-              onChange={this.handleChange}
-              type="email"
-              name="email"
-              aria-describedby="emailHelp"
-              placeholder="Enter email"
-              required
-            />
-          </label>
-          <label>
-            Password
-            <input
-              value={this.state.password}
-              onChange={this.handleChange}
-              type="password"
-              name="password"
-              placeholder="Password"
-              required
-            />
-          </label>
-          <label>
-            Confirm Password
-            <input
-              value={this.state.confirmPassword}
-              onChange={this.handleChange}
-              type="password"
-              name="confirmPassword"
-              placeholder="Confirm Password"
-              required
-            />
-          </label>
-          <label>
-            Username
-            <input
-              value={this.state.username}
-              onChange={this.handleChange}
-              type="text"
-              name="username"
-              placeholder="Username"
-              required
-            />
-          </label>
-          <button onClick={this.signup}>Signup</button>
-          {this.state.errMsg && <p>{this.state.errMsg}</p>}
-        </form>
-        <section>
-          <p>Already have an account?</p>
-          <Link to="/">Log In</Link>
-        </section>
+        <div className="login-tile">
+          <h1>geoGRAFFITI</h1>
+          <form>
+            <label>
+              Email address
+              <input
+                value={this.state.email}
+                onChange={this.handleChange}
+                type="email"
+                name="email"
+                aria-describedby="emailHelp"
+                placeholder="Enter email"
+                required
+              />
+            </label>
+            <label>
+              Password
+              <input
+                value={this.state.password}
+                onChange={this.handleChange}
+                type="password"
+                name="password"
+                placeholder="Password"
+                required
+              />
+            </label>
+            <label>
+              Confirm Password
+              <input
+                value={this.state.confirmPassword}
+                onChange={this.handleChange}
+                type="password"
+                name="confirmPassword"
+                placeholder="Confirm Password"
+                required
+              />
+            </label>
+            <label>
+              Username
+              <input
+                value={this.state.username}
+                onChange={this.handleChange}
+                type="text"
+                name="username"
+                placeholder="Username"
+                required
+              />
+            </label>
+            <button onClick={this.signup}>Signup</button>
+            {this.state.errMsg && <p>{this.state.errMsg}</p>}
+          </form>
+          <section>
+            <p>Already have an account?</p>
+            <Link to="/">Log In</Link>
+          </section>
+        </div>
       </div>
     );
   }

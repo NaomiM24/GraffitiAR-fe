@@ -32,42 +32,44 @@ class Login extends Component {
   render() {
     return (
       <div className="login">
-        <h1>geoGRAFFITI</h1>
-        <form>
-          <label>
-            Email address:{" "}
-            <input
-              value={this.state.email}
-              onChange={this.handleChange}
-              type="email"
-              name="email"
-              aria-describedby="emailHelp"
-              placeholder="Enter email"
-              required
-            />
-          </label>
-          <label>
-            Password:{" "}
-            <input
-              value={this.state.password}
-              onChange={this.handleChange}
-              type="password"
-              name="password"
-              placeholder="Password"
-              required
-            />
-          </label>
+        <div className="login-tile">
+          <h1>geoGRAFFITI</h1>
+          <form>
+            <label>
+              Email address:{" "}
+              <input
+                value={this.state.email}
+                onChange={this.handleChange}
+                type="email"
+                name="email"
+                aria-describedby="emailHelp"
+                placeholder="Enter email"
+                required
+              />
+            </label>
+            <label>
+              Password:{" "}
+              <input
+                value={this.state.password}
+                onChange={this.handleChange}
+                type="password"
+                name="password"
+                placeholder="Password"
+                required
+              />
+            </label>
 
-          <button type="submit" onClick={this.login}>
-            Login
-          </button>
-          {this.state.errMsg && <p>{this.state.errMsg}</p>}
-        </form>
+            <button type="submit" onClick={this.login}>
+              Login
+            </button>
+            {this.state.errMsg && <p>{this.state.errMsg}</p>}
+          </form>
 
-        <section>
-          <p>Don't have an account?</p>
-          <Link to="/signup">Sign Up</Link>
-        </section>
+          <section>
+            <p>Don't have an account?</p>
+            <Link to="/signup">Sign Up</Link>
+          </section>
+        </div>
       </div>
     );
   }
