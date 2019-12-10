@@ -38,6 +38,7 @@ class ChangeDisplayPicture extends Component {
               type="url"
               name="newDisplayPicture"
               required
+              placeholder="insert image URL"
             />
           </label>
           <button onClick={this.changeDisplayPictureByFirebaseID()}>

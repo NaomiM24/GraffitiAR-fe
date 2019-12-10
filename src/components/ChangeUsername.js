@@ -37,6 +37,7 @@ class ChangeUsername extends Component {
               type="text"
               name="newUsername"
               required
+              placeholder="e.g. ParryHotter"
             />
           </label>
           <button onClick={this.changeUsernameByFirebaseID()}>Confirm</button>
