@@ -28,7 +28,6 @@ export const putUsernameByFirebaseID = (newUsername, firebase_id) => {
 
 export const putDisplayPicByFirebaseID = (newDisplayPic, firebase_id) => {
   return axios.put(`${baseURL}/users/change_pic/${firebase_id}`, {
-    newDisplayPic,
-    firebase_id,
+    display_pic_url: newDisplayPic,
   });
 };
