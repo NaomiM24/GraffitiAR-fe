@@ -53,8 +53,9 @@ class CanvasList extends Component {
   render() {
     const { nearbyMarkers } = this.state;
     return (
-      <>
-        <h2>Graffiti in your location</h2>
+      <div className="canvas-list-page">
+        <h2>Posts in your location</h2>
+        <p>click to view graffiti</p>
         <button onClick={this.getGeoLocation}>
           <img src="/refresh.png" alt="refresh" />
         </button>
@@ -69,7 +70,7 @@ class CanvasList extends Component {
         ) : (
           <p>No markers nearby</p>
         )}
-      </>
+      </div>
     );
   }
 }
