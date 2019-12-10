@@ -14,10 +14,6 @@ class Settings extends Component {
 
   render() {
     var visibility = "hide";
-
-    console.log("Settings user", this.props.user);
-    console.log("Settings uid", this.props.uid);
-
     if (this.props.settingsVisibility) {
       visibility = "show";
     }
