@@ -162,12 +162,21 @@ button {
   justify-content: center;
   height: calc(var(--vh, 1vh) * 100);
   width: 100vw;
-  background-image: url("/bricks.jpg");
+  background-image: url("./assets/graffiti_background.jpg");
   background-repeat: repeat;
+}
+
+.login-tile {
+  background-color: rgba(199, 236, 241, 0.7);
+  height: calc(var(--vh, 1vh) * 100);
+  width: 100vw;
+  justify-content: center;
+  /* margin: 0px 2.5vw; */
 }
 .login h1 {
   font-family: "bombing";
   font-size: 100px;
+  color: black;
 }
 
 .login form {
@@ -177,6 +186,7 @@ button {
   height: 200px;
   width: 206px;
   margin: auto;
+  color: black;
 }
 
 .login form label {
