@@ -3,8 +3,8 @@ font-family: 'Barrio', cursive;
 font-family: 'Monofett', cursive; */
 
 @font-face {
-  font-family: "bombing";
-  src: url("/bombing.ttf");
+  font-family: "graffiti";
+  src: url("/From Street Art.otf") format("opentype");
 }
 
 .App {
@@ -166,8 +166,9 @@ button {
   background-repeat: repeat;
 }
 .login h1 {
-  font-family: "bombing";
-  font-size: 100px;
+  font-family: "graffiti";
+  font-size: 60px;
+  color: #0e1c36;
 }
 
 .login form {
@@ -175,8 +176,8 @@ button {
   flex-direction: column;
   justify-content: space-around;
   height: 200px;
-  width: 206px;
   margin: auto;
+  font-size: x-large;
 }
 
 .login form label {
@@ -184,18 +185,27 @@ button {
   flex-direction: column;
   justify-content: center;
   margin-top: 10px;
-  text-align: left;
+  text-align: center;
 }
 
 .login form label input {
   width: 200px;
   margin: 0 auto;
+  font-size: large;
+  border: 1px solid black;
+  border-radius: 25px;
+  padding: 0.5em;
 }
 
 .login form button {
   border: 1px solid black;
-  width: 60px;
+  border-radius: 25px;
+  width: 150px;
   padding: 8px 0;
-  margin: 10px auto;
-  font-size: medium;
+  margin: 30px auto;
+  font-size: large;
+}
+
+.login section {
+  font-size: large;
 }
