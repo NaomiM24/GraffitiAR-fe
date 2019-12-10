@@ -40,10 +40,10 @@ class Settings extends Component {
           <button onClick={this.logout}>Logout</button>
         </Link>
         <Toggle buttonName="Change Username">
-          <ChangeUsername user={this.props.user} uid={this.props.uid} />
+          <ChangeUsername uid={this.props.uid} />
         </Toggle>
         <Toggle buttonName="Change Display Picture">
-          <ChangeDisplayPicture user={this.props.user} uid={this.props.uid} />
+          <ChangeDisplayPicture uid={this.props.uid} />
         </Toggle>
         <button onClick={this.handleClick}>View Your Graffiti</button>
         <AllOwnGraffiti
