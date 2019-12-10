@@ -33,7 +33,7 @@ class Signup extends Component {
           api.postUser({
             firebase_id: data.user.uid,
             username: this.state.username,
-            display_pic_url: "https://imgur.com/a/adw37ZP",
+            display_pic_url: "https://i.imgur.com/MffRKW2.jpg",
           });
           navigate("/");
         })
