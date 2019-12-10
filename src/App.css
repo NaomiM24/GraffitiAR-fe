@@ -3,8 +3,8 @@ font-family: 'Barrio', cursive;
 font-family: 'Monofett', cursive; */
 
 @font-face {
-  font-family: "graffiti";
-  src: url("/From Street Art.otf") format("opentype");
+  font-family: "bombing";
+  src: url("/bombing.ttf");
 }
 
 .App {
@@ -177,6 +177,11 @@ button {
   font-family: "bombing";
   font-size: 100px;
   color: black;
+}
+
+.login h1 .geo {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 60px;
 }
 
 .login form {

@@ -20,6 +20,21 @@ class MarkerLabel extends Component {
     });
   }
 
+  componentDidUpdate(prevProps) {
+    const { user_id, graffiti_id } = this.props;
+    if (prevProps.graffiti_id !== graffiti_id) {
+      api.getUserById(user_id).then(({ data }) => {
+        this.setState({
+          username: data.username,
+          pic: data.display_pic_url,
+        });
+      });
+      api.getGraffitiById(graffiti_id).then(({ data }) => {
+        this.setState({ likes: data.votes });
+      });
+    }
+  }
+
   handleError = () => {
     this.setState({ pic: require("../assets/user.png") });
   };
@@ -28,7 +43,7 @@ class MarkerLabel extends Component {
     const { username, pic, likes } = this.state;
     return (
       <div className="marker-user">
-        {username && likes ? (
+        {username && likes !== null ? (
           <>
             <p>Posted by: {username}</p>
             <img
