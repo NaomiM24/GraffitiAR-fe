@@ -60,6 +60,15 @@ class Settings extends Component {
   };
 
   handleDeleteAccount = () => {
+    let verify = window.confirm(
+      "Are you sure you want to delete your account? All your graffiti will be washed away!"
+    );
+    if (verify) {
+      this.handleConfirmedDelete();
+    }
+  };
+
+  handleConfirmedDelete = () => {
     const firebase_id = this.props.uid;
     var user = fire.auth().currentUser;
     api
