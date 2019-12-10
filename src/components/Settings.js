@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import "./Settings.css";
 import fire from "../config/Fire";
+import Toggle from "./Toggle";
+import ChangeUsername from "./ChangeUsername";
+import ChangeDisplayPicture from "./ChangeDisplayPicture";
 import AllOwnGraffiti from "./AllOwnGraffiti";
 import { Link } from "@reach/router";
 import * as api from "../api";
@@ -19,6 +22,7 @@ class Settings extends Component {
   }
 
   render() {
+
     let visibility = "hide";
 
     if (this.props.settingsVisibility) {
@@ -31,10 +35,16 @@ class Settings extends Component {
           <img src="./close.png" alt="close" />
         </button>
         <h1>Settings</h1>
+      
         <Link to="/">
           <button onClick={this.logout}>Logout</button>
         </Link>
-        <p>Change Username</p>
+        <Toggle buttonName="Change Username">
+          <ChangeUsername user={this.props.user} uid={this.props.uid} />
+        </Toggle>
+        <Toggle buttonName="Change Display Picture">
+          <ChangeDisplayPicture user={this.props.user} uid={this.props.uid} />
+        </Toggle>
         <button onClick={this.handleClick}>View Your Graffiti</button>
         <AllOwnGraffiti
           handleClick={this.handleClick}
