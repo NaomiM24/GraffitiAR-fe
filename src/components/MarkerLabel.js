@@ -33,7 +33,7 @@ class MarkerLabel extends Component {
             <p>Posted by: {username}</p>
             <img
               src={pic}
-              alt={`${username}'s profile picture`}
+              alt={`${username}'s profile pic`}
               onError={this.handleError}
             />
             <p>Likes: {likes}</p>
