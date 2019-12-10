@@ -18,11 +18,17 @@ class ChangeUsername extends Component {
   }
 
   changeUsernameByFirebaseID() {
-    api.putUsernameByFirebaseID();
+    api.putUsernameByFirebaseID(
+      {
+        username: this.state.newUsername,
+      },
+      this.props.uid
+    );
   }
   render() {
     console.log("ChangeUsername user", this.props.user);
     console.log("ChangeUsername uid", this.props.uid);
+    console.log(this.state.newUsername);
     return (
       <div>
         <form>
@@ -32,11 +38,11 @@ class ChangeUsername extends Component {
               value={this.state.newUsername}
               onChange={this.handleChange}
               type="text"
-              name="username"
+              name="newUsername"
               required
             />
           </label>
-          <button onClick={this.changeUsernameByFirebaseID}>Confirm</button>
+          <button onClick={this.changeUsernameByFirebaseID()}>Confirm</button>
         </form>
       </div>
     );
