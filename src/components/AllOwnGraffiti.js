@@ -7,7 +7,7 @@ export default class AllOwnGraffiti extends Component {
     myGraffiti: [],
   };
 
-  componentDidMount() {
+  componentDidUpdate() {
     api.getAllGraffiti().then(({ data }) => {
       const filteredData = data.filter(
         graffiti => graffiti.firebase_id === this.props.uid
