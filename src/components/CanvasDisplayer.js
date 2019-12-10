@@ -44,12 +44,20 @@ class CanvasDisplayer extends React.Component {
     if (!username) return <p>Loading</p>;
     return (
       <div>
-        <Link to={`/view`}>Back</Link>
-        <p>posted by: {username}</p>
-        <p>likes: {graffiti.votes + votesAdded}</p>
-        <button onClick={() => this.handleVote(graffiti.votes, graffiti.id)}>
-          Like
+        <button>
+          <Link to={`/view`}>back</Link>
         </button>
+        <p>posted by: {graffiti.firebase_id}</p>
+        <p>
+          <button onClick={() => this.handleVote(graffiti.votes, graffiti.id)}>
+            {votesAdded === 0 ? (
+              <img src="/unlike.png" alt="unliked" />
+            ) : (
+              <img src="/like.png" alt="like" />
+            )}
+          </button>
+          {graffiti.votes + votesAdded}
+        </p>
         <CanvasDraw
           disabled
           hideGrid

@@ -29,17 +29,11 @@ class CanvasCard extends Component {
     const { username, isLoading, err } = this.state;
     return (
       <li className="canvas-card">
-        {isLoading ? (
-          <p>Loading...</p>
-        ) : err ? (
-          <p>{err}</p>
-        ) : (
-          <>
-            <p>posted by: {username}</p>
-            <p>likes: {graffiti.votes}</p>
-            <Link to={`/view/${graffiti.id}`}>View Graffiti</Link>
-          </>
-        )}
+        <p>posted by: {graffiti.firebase_id}</p>
+        <p>
+          <img src="/likes.png" alt="likes" /> {graffiti.votes}
+        </p>
+        <Link to={`/view/${graffiti.id}`}>View Graffiti</Link>
       </li>
     );
   }
