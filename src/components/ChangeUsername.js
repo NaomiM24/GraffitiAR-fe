@@ -4,12 +4,42 @@ import * as api from "../api.js";
 class ChangeUsername extends Component {
   constructor(props) {
     super(props);
+    this.handleChange = this.handleChange.bind(this);
+    this.changeUsernameByFirebaseID = this.changeUsernameByFirebaseID.bind(
+      this
+    );
+    this.state = {
+      newUsername: "",
+    };
   }
 
+  handleChange(event) {
+    this.setState({ [event.target.name]: event.target.value });
+  }
+
+  changeUsernameByFirebaseID() {
+    api.putUsernameByFirebaseID();
+  }
   render() {
     console.log("ChangeUsername user", this.props.user);
     console.log("ChangeUsername uid", this.props.uid);
-    return <div>INSIDE ChangeUsername</div>;
+    return (
+      <div>
+        <form>
+          <label>
+            New Username
+            <input
+              value={this.state.newUsername}
+              onChange={this.handleChange}
+              type="text"
+              name="username"
+              required
+            />
+          </label>
+          <button onClick={this.changeUsernameByFirebaseID}>Confirm</button>
+        </form>
+      </div>
+    );
   }
 }
 
