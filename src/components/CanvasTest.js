@@ -21,6 +21,7 @@ export default class CanvasTest extends Component {
     posted: false,
     postErr: false,
     submitBlank: false,
+    created_at: "",
   };
   componentDidMount() {
     this.getGeoLocation();
@@ -129,7 +130,8 @@ export default class CanvasTest extends Component {
                     uid,
                     picture,
                     this.state.currentLatLng.lat,
-                    this.state.currentLatLng.lng
+                    this.state.currentLatLng.lng,
+                    this.state.created_at
                   )
                   .then(() => {
                     this.setState({ posted: true }, () => {
