@@ -26,9 +26,6 @@ class ChangeUsername extends Component {
     );
   }
   render() {
-    console.log("ChangeUsername user", this.props.user);
-    console.log("ChangeUsername uid", this.props.uid);
-    console.log(this.state.newUsername);
     return (
       <div>
         <form>

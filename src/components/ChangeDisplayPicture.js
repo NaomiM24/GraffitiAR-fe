@@ -27,8 +27,6 @@ class ChangeDisplayPicture extends Component {
   }
 
   render() {
-    console.log("ChangeDisplayPicture user", this.props.user);
-    console.log("ChangeDisplayPicture uid", this.props.uid);
     return (
       <div>
         <form>
