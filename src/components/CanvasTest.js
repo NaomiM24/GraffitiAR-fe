@@ -21,7 +21,6 @@ export default class CanvasTest extends Component {
     posted: false,
     postErr: false,
     submitBlank: false,
-    created_at: "",
   };
   componentDidMount() {
     this.getGeoLocation();
@@ -125,13 +124,14 @@ export default class CanvasTest extends Component {
                   }, 3000);
                 });
               } else {
+                let time = new Date().toLocaleDateString();
                 api
                   .postCanvas(
                     uid,
                     picture,
                     this.state.currentLatLng.lat,
                     this.state.currentLatLng.lng,
-                    this.state.created_at
+                    time
                   )
                   .then(() => {
                     this.setState({ posted: true }, () => {
