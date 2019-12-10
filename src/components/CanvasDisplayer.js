@@ -47,7 +47,7 @@ class CanvasDisplayer extends React.Component {
         <button>
           <Link to={`/view`}>back</Link>
         </button>
-        <p>posted by: {graffiti.firebase_id}</p>
+        <p>posted by: {username}</p>
         <p>
           <button onClick={() => this.handleVote(graffiti.votes, graffiti.id)}>
             {votesAdded === 0 ? (
