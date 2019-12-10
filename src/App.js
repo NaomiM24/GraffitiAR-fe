@@ -49,7 +49,7 @@ class App extends Component {
               <CanvasTest
                 path="/canvas"
                 className="App-router"
-                uid={this.state.user.uid} // can do directly uid={user.uid} as already destructured
+                uid={user.uid}
               />
               <Map path="/" className="App-router" />
               <CanvasList path="/view" className="App-router" />
