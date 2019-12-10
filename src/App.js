@@ -51,7 +51,7 @@ class App extends Component {
           </Router>
         ) : (
           <main className="App-main">
-            <Header className="App-header" user={user} uid={user.uid} />
+            <Header className="App-header" uid={user.uid} />
             <NavBar className="App-navbar" />
             <Router className="App-router">
               <CanvasTest
