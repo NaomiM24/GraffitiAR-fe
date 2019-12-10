@@ -7,13 +7,21 @@ class CanvasDisplayer extends React.Component {
   state = {
     votesAdded: 0,
     graffiti: null,
+    username: null,
   };
 
   componentDidMount() {
     const { id } = this.props;
-    api.getGraffitiById(id).then(({ data }) => {
-      this.setState({ graffiti: data });
-    });
+    api
+      .getGraffitiById(id)
+      .then(({ data }) => {
+        this.setState({ graffiti: data });
+      })
+      .then(() => {
+        api.getUserById(this.state.graffiti.firebase_id).then(({ data }) => {
+          this.setState({ username: data.username });
+        });
+      });
   }
 
   handleVote = (votes, id) => {
@@ -32,12 +40,12 @@ class CanvasDisplayer extends React.Component {
   };
 
   render() {
-    const { votesAdded, graffiti } = this.state;
-    if (!graffiti) return <p>Loading</p>;
+    const { votesAdded, graffiti, username } = this.state;
+    if (!username) return <p>Loading</p>;
     return (
       <div>
         <Link to={`/view`}>Back</Link>
-        <p>posted by: {graffiti.firebase_id}</p>
+        <p>posted by: {username}</p>
         <p>likes: {graffiti.votes + votesAdded}</p>
         <button onClick={() => this.handleVote(graffiti.votes, graffiti.id)}>
           Like
