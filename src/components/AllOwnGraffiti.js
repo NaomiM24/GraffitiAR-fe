@@ -7,13 +7,24 @@ export default class AllOwnGraffiti extends Component {
     myGraffiti: null,
   };
 
-  componentDidUpdate() {
+  componentDidMount() {
     api.getAllGraffiti().then(({ data }) => {
       const filteredData = data.filter(
         graffiti => graffiti.firebase_id === this.props.uid
       );
       this.setState({ myGraffiti: filteredData });
     });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.graffitiVisibility !== this.props.graffitiVisibility) {
+      api.getAllGraffiti().then(({ data }) => {
+        const filteredData = data.filter(
+          graffiti => graffiti.firebase_id === this.props.uid
+        );
+        this.setState({ myGraffiti: filteredData });
+      });
+    }
   }
   render() {
     const { myGraffiti } = this.state;
@@ -34,7 +45,11 @@ export default class AllOwnGraffiti extends Component {
             {myGraffiti &&
               myGraffiti.map(graffiti => {
                 return (
-                  <SingleOwnGraffiti graffiti={graffiti} key={graffiti.id} />
+                  <SingleOwnGraffiti
+                    graffiti={graffiti}
+                    key={graffiti.id}
+                    removeGraffiti={this.removeGraffiti}
+                  />
                 );
               })}
           </ul>
@@ -44,4 +59,13 @@ export default class AllOwnGraffiti extends Component {
       </div>
     );
   }
+  removeGraffiti = id => {
+    this.setState(currentState => {
+      return {
+        myGraffiti: currentState.myGraffiti.filter(
+          graffiti => graffiti.id !== id
+        ),
+      };
+    });
+  };
 }
