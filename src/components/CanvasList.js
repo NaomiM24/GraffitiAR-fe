@@ -55,7 +55,9 @@ class CanvasList extends Component {
     return (
       <>
         <h2>Graffiti in your location</h2>
-        <button onClick={this.getGeoLocation}>Refresh</button>
+        <button onClick={this.getGeoLocation}>
+          <img src="/refresh.png" alt="refresh" />
+        </button>
         {nearbyMarkers === null ? (
           <p>Loading...</p>
         ) : nearbyMarkers.length !== 0 ? (

@@ -35,7 +35,7 @@ class Settings extends Component {
           <button onClick={this.logout}>Logout</button>
         </Link>
         <p>Change Username</p>
-        <button onClick={this.handleClick}>View My Graffiti</button>
+        <button onClick={this.handleClick}>View Your Graffiti</button>
         <AllOwnGraffiti
           handleClick={this.handleClick}
           graffitiVisibility={this.state.graffitiVisible}
@@ -43,7 +43,7 @@ class Settings extends Component {
         />
         <Link to="/">
           <button onClick={this.handleDeleteAccount}>
-            Delete my account :(
+            Delete Your Account :(
           </button>
         </Link>
       </div>

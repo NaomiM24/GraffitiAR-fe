@@ -24,7 +24,7 @@ export default class AllOwnGraffiti extends Component {
     return (
       <div id="flyoutMenu" className={visibility}>
         <button onClick={this.props.handleClick}>
-          <img src="./close.png" alt="close" />
+          <img src="/left-arrow.png" alt="back" />
         </button>
         <h2>All Your Graffiti</h2>
         {myGraffiti === null ? (

@@ -7,7 +7,9 @@ class CanvasCard extends Component {
     return (
       <li className="canvas-card">
         <p>posted by: {graffiti.firebase_id}</p>
-        <p>likes: {graffiti.votes}</p>
+        <p>
+          <img src="/likes.png" alt="likes" /> {graffiti.votes}
+        </p>
         <Link to={`/view/${graffiti.id}`}>View Graffiti</Link>
       </li>
     );

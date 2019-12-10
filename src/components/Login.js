@@ -32,7 +32,7 @@ class Login extends Component {
   render() {
     return (
       <div className="login">
-        <h1>Graffiti ARtist</h1>
+        <h1>geoGRAFFITI</h1>
         <form>
           <label>
             Email address:{" "}
