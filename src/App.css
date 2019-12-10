@@ -11,7 +11,7 @@ font-family: 'Monofett', cursive; */
   /* margin: 0; */
   text-align: center;
   height: calc(var(--vh, 1vh) * 100);
-  background-color: rgba(84, 84, 179, 0.5);
+  background-color: rgb(176, 176, 216);
 }
 
 body {
@@ -46,10 +46,11 @@ header {
   grid-template-columns: 3fr 1fr;
   align-items: center;
   justify-items: center;
+  /* position: fixed; */
 }
 
 .App-router {
-  margin: 0% 0px 0px 0px;
+  margin: 20% 0px 0px 0px;
   grid-row: 2/3;
 }
 
@@ -143,8 +144,8 @@ button {
 }
 
 .canvas-list-page {
-  margin: 0;
   padding: 0;
+  background-color: rgb(176, 176, 216);
 }
 .canvas-list {
   display: flex;
