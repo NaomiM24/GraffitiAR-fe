@@ -23,7 +23,8 @@ export default class SingleOwnGraffiti extends Component {
     );
   }
   handleDelete = () => {
-    const { graffiti } = this.props;
+    const { graffiti, removeGraffiti } = this.props;
+    removeGraffiti(graffiti.id);
     api
       .deleteGraffiti(graffiti.id)
       .then(() => console.log("graffiti deleted"))
