@@ -28,7 +28,13 @@ export const updateVote = (votes, graffiti_id) => {
 
 export const deleteGraffiti = graffiti_id => {
   return axios.delete(`${baseURL}/graffiti/${graffiti_id}`);
+};
 
 export const getGraffitiById = id => {
   return axios.get(`${baseURL}/graffiti/${id}`);
+};
+
+export const deleteAccount = firebase_id => {
+  console.log(firebase_id);
+  return axios.delete(`${baseURL}/users/del/${firebase_id}`);
 };

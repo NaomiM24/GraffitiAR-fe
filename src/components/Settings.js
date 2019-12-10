@@ -3,6 +3,7 @@ import "./Settings.css";
 import fire from "../config/Fire";
 import AllOwnGraffiti from "./AllOwnGraffiti";
 import { Link } from "@reach/router";
+import * as api from "../api";
 
 class Settings extends Component {
   constructor(props) {
@@ -40,7 +41,11 @@ class Settings extends Component {
           graffitiVisibility={this.state.graffitiVisible}
           uid={this.props.uid}
         />
-        <p>Delete my account :(</p>
+        <Link to="/">
+          <button onClick={this.handleDeleteAccount}>
+            Delete my account :(
+          </button>
+        </Link>
       </div>
     );
   }
@@ -52,6 +57,28 @@ class Settings extends Component {
     this.setState({
       graffitiVisible: !this.state.graffitiVisible,
     });
+  };
+
+  handleDeleteAccount = () => {
+    let verify = window.confirm(
+      "Are you sure you want to delete your account? All your graffiti will be washed away!"
+    );
+    if (verify) {
+      this.handleConfirmedDelete();
+    }
+  };
+
+  handleConfirmedDelete = () => {
+    const firebase_id = this.props.uid;
+    var user = fire.auth().currentUser;
+    api
+      .deleteAccount(firebase_id)
+      .then(() => {
+        console.log("user db account deleted");
+        user.delete();
+      })
+      .then(() => console.log("firebase account deleted"))
+      .catch(err => console.log(err));
   };
 }
 
