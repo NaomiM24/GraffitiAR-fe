@@ -42,135 +42,122 @@ export default class CanvasTest extends Component {
 
   render() {
     const { uid } = this.props;
-    if (uid === undefined) {
-      return (window.location.href = "/");
-    } else {
-      return (
-        <main>
-          {this.state.posted && (
-            <p className="posted-graffiti">
-              Your graffiti has been successfully posted!
-            </p>
-          )}
-          {this.state.submitBlank && (
-            <p className="blank-error">Draw on canvas to submit!</p>
-          )}
-          {this.state.postErr && (
-            <p className="posted-graffiti-error">
-              Error! Please try again later
-            </p>
-          )}
+    return (
+      <main>
+        {this.state.posted && (
+          <p className="posted-graffiti">
+            Your graffiti has been successfully posted!
+          </p>
+        )}
+        {this.state.submitBlank && (
+          <p className="blank-error">Draw on canvas to submit!</p>
+        )}
+        {this.state.postErr && (
+          <p className="posted-graffiti-error">Error! Please try again later</p>
+        )}
+        <button
+          onClick={this.handleColorChange}
+          name="#0000ff"
+          className="paint-color"
+          id="blue"
+        ></button>
+        <button
+          onClick={this.handleColorChange}
+          name="#ff0000"
+          className="paint-color"
+          id="red"
+        ></button>
+        <button
+          onClick={this.handleColorChange}
+          name="#00ff00"
+          className="paint-color"
+          id="green"
+        ></button>
+        <button
+          onClick={this.handleColorChange}
+          name="#ffff00"
+          className="paint-color"
+          id="yellow"
+        ></button>
+        <button
+          onClick={this.handleColorChange}
+          name="#000000"
+          className="paint-color"
+          id="black"
+        ></button>
+        <Slider
+          value={this.state.brushRadius}
+          min={this.state.min}
+          max={this.state.max}
+          onChange={this.handleSliderChange}
+          className="slider"
+        />
+        <CanvasDraw
+          ref={canvasDraw => (this.saveableCanvas = canvasDraw)}
+          brushColor={this.state.color}
+          canvasWidth={this.state.dimension}
+          canvasHeight={this.state.dimension}
+          brushRadius={this.state.brushRadius}
+        />
+        <div className="canvas-buttons">
           <button
-            onClick={this.handleColorChange}
-            name="#0000ff"
-            className="paint-color"
-            id="blue"
-          ></button>
+            onClick={() => {
+              this.saveableCanvas.clear();
+            }}
+          >
+            <img src="/rubbish-bin.png" alt="clear" className="canvas-change" />
+          </button>
           <button
-            onClick={this.handleColorChange}
-            name="#ff0000"
-            className="paint-color"
-            id="red"
-          ></button>
+            onClick={() => {
+              this.saveableCanvas.undo();
+            }}
+          >
+            <img src="/undo.png" alt="undo" className="canvas-change" />
+          </button>
           <button
-            onClick={this.handleColorChange}
-            name="#00ff00"
-            className="paint-color"
-            id="green"
-          ></button>
-          <button
-            onClick={this.handleColorChange}
-            name="#ffff00"
-            className="paint-color"
-            id="yellow"
-          ></button>
-          <button
-            onClick={this.handleColorChange}
-            name="#000000"
-            className="paint-color"
-            id="black"
-          ></button>
-          <Slider
-            value={this.state.brushRadius}
-            min={this.state.min}
-            max={this.state.max}
-            onChange={this.handleSliderChange}
-            className="slider"
-          />
-          <CanvasDraw
-            ref={canvasDraw => (this.saveableCanvas = canvasDraw)}
-            brushColor={this.state.color}
-            canvasWidth={this.state.dimension}
-            canvasHeight={this.state.dimension}
-            brushRadius={this.state.brushRadius}
-          />
-          <div className="canvas-buttons">
-            <button
-              onClick={() => {
-                this.saveableCanvas.clear();
-              }}
-            >
-              <img
-                src="/rubbish-bin.png"
-                alt="clear"
-                className="canvas-change"
-              />
-            </button>
-            <button
-              onClick={() => {
-                this.saveableCanvas.undo();
-              }}
-            >
-              <img src="/undo.png" alt="undo" className="canvas-change" />
-            </button>
-            <button
-              onClick={() => {
-                const picture = this.saveableCanvas.getSaveData();
-                this.saveableCanvas.clear();
-                if (JSON.parse(picture).lines.length === 0) {
-                  this.setState({ submitBlank: true }, () => {
-                    setTimeout(() => {
-                      this.setState({ submitBlank: false });
-                    }, 3000);
-                  });
-                } else {
-                  let time = new Date().toLocaleDateString();
-                  api
-                    .postCanvas(
-                      uid,
-                      picture,
-                      this.state.currentLatLng.lat,
-                      this.state.currentLatLng.lng,
-                      time
-                    )
-                    .then(() => {
-                      this.setState({ posted: true }, () => {
-                        setTimeout(() => {
-                          this.setState({ posted: false });
-                        }, 3000);
-                      });
-                    })
-                    .catch(err => {
-                      this.setState({ postErr: true }, () => {
-                        setTimeout(() => {
-                          this.setState({ postErr: false });
-                        }, 3000);
-                      });
+            onClick={() => {
+              const picture = this.saveableCanvas.getSaveData();
+              this.saveableCanvas.clear();
+              if (JSON.parse(picture).lines.length === 0) {
+                this.setState({ submitBlank: true }, () => {
+                  setTimeout(() => {
+                    this.setState({ submitBlank: false });
+                  }, 3000);
+                });
+              } else {
+                let time = new Date().toLocaleDateString();
+                api
+                  .postCanvas(
+                    uid,
+                    picture,
+                    this.state.currentLatLng.lat,
+                    this.state.currentLatLng.lng,
+                    time
+                  )
+                  .then(() => {
+                    this.setState({ posted: true }, () => {
+                      setTimeout(() => {
+                        this.setState({ posted: false });
+                      }, 3000);
                     });
-                }
-              }}
-            >
-              <img
-                src="/paper-plane.png"
-                alt="send"
-                className="canvas-change"
-              />
-            </button>
-          </div>
-        </main>
-      );
-    }
+                  })
+                  .catch(err => {
+                    this.setState({ postErr: true }, () => {
+                      setTimeout(() => {
+                        this.setState({ postErr: false });
+                      }, 3000);
+                    });
+                  });
+              }
+            }}
+          >
+            <img src="/paper-plane.png" alt="send" className="canvas-change" />
+          </button>
+        </div>
+      </main>
+    );
   }
+
   handleColorChange = event => {
     const { name } = event.target;
     this.setState({ color: name });
