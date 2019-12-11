@@ -110,7 +110,7 @@ class Signup extends Component {
 
           {this.state.errMsg && (
             <div className="signupError">
-              <img src="/icon.png" />
+              <img src="/icon.png" alt="error" />
               <p>{this.state.errMsg}</p>
             </div>
           )}

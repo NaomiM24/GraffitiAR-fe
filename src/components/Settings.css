@@ -40,17 +40,7 @@
 
 #flyoutMenu h1 {
   font-size: 50px;
-  margin: 10px 0 20px 0;
-}
-
-#flyoutMenu h2 a {
-  color: #333;
-  margin-left: 15px;
-  text-decoration: none;
-}
-
-#flyoutMenu h2 a:hover {
-  text-decoration: underline;
+  margin: 0 0 20px 0;
 }
 
 img {
@@ -121,4 +111,41 @@ img {
 
 .change button {
   width: 150px;
+}
+
+#all-own-graffiti {
+  height: calc(var(--vh, 1vh) * 100);
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: transform 0.3s cubic-bezier(0, 0.52, 0, 1);
+  overflow: scroll;
+  z-index: 1000;
+  color: #0e1c36;
+  background: none;
+  background-color: #b8e4cd;
+  display: flex;
+  flex-direction: column;
+}
+
+#all-own-graffiti button {
+  background-color: #b8e4cd;
+  width: 50px;
+}
+
+.own-graffiti ul {
+  height: calc(var(--vh, 1vh) * 80);
+  width: calc(var(--vw, 1vw) * 100);
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.own-graffiti-list li {
+  margin: 0;
+  padding: 5px 0px;
+  align-items: center;
+  display: flex;
 }

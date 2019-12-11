@@ -3,6 +3,9 @@ import CanvasDraw from "react-canvas-draw";
 import * as api from "../api";
 
 export default class SingleOwnGraffiti extends Component {
+  state = {
+    dimension: window.innerWidth * 0.75,
+  };
   render() {
     const { graffiti } = this.props;
     return (
@@ -15,9 +18,11 @@ export default class SingleOwnGraffiti extends Component {
           catenaryColor={"#FFFFFFFF"}
           ref={canvasDraw => (this.loadableCanvas = canvasDraw)}
           saveData={graffiti.drawing_str}
+          canvasWidth={this.state.dimension}
+          canvasHeight={this.state.dimension}
         />
         <button className="delete-graffiti" onClick={this.handleDelete}>
-          Delete
+          <img src="/rubbish-bin.png" alt="delete" />
         </button>
       </li>
     );
