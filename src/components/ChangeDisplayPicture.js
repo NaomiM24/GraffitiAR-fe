@@ -37,6 +37,7 @@ class ChangeDisplayPicture extends Component {
         <form onSubmit={this.changeDisplayPictureByFirebaseID}>
           <label>
             New Display Picture:
+            <br />
             <input
               value={this.state.newDisplayPicture}
               onChange={this.handleChange}
