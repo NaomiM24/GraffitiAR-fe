@@ -51,7 +51,6 @@ class CanvasList extends Component {
   };
 
   render() {
-    console.log("inside canvas list");
     const { nearbyMarkers } = this.state;
     const { uid } = this.props;
     if (uid === undefined) {

@@ -41,7 +41,6 @@ export default class CanvasTest extends Component {
   };
 
   render() {
-    console.log("inside canvas test");
     const { uid } = this.props;
     if (uid === undefined) {
       return (window.location.href = "/");
