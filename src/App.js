@@ -48,6 +48,7 @@ class App extends Component {
           <Router>
             <Login path="/" />
             <Signup path="/signup" />
+            <RedirectLogin default />
           </Router>
         ) : (
           <main className="App-main">
