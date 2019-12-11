@@ -24,6 +24,21 @@ export default class CanvasTest extends Component {
   };
 
   componentDidMount() {
+    if (window.innerHeight / window.innerWidth < 1.5) {
+      this.setState(() => {
+        return { dimension: window.innerWidth * 0.7 };
+      });
+    }
+    if (window.innerHeight / window.innerWidth < 1.2) {
+      this.setState(() => {
+        return { dimension: window.innerWidth * 0.5 };
+      });
+    }
+    if (window.innerHeight / window.innerWidth < 0.85) {
+      this.setState(() => {
+        return { dimension: window.innerWidth * 0.4 };
+      });
+    }
     this.getGeoLocation();
   }
 
@@ -91,6 +106,17 @@ export default class CanvasTest extends Component {
           max={this.state.max}
           onChange={this.handleSliderChange}
           className="slider"
+          handleStyle={{
+            height: 16,
+            width: 16,
+            marginLeft: -8,
+            marginTop: -6,
+            backgroundColor: "#0E1C36",
+            border: 0,
+          }}
+          trackStyle={{
+            background: "#0CCE6B",
+          }}
         />
         <CanvasDraw
           ref={canvasDraw => (this.saveableCanvas = canvasDraw)}
@@ -112,7 +138,7 @@ export default class CanvasTest extends Component {
               this.saveableCanvas.undo();
             }}
           >
-            <img src="/undo.png" alt="undo" className="canvas-change" />
+            <img src="/return.png" alt="undo" className="canvas-change" />
           </button>
           <button
             onClick={() => {

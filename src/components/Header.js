@@ -5,8 +5,12 @@ class Header extends Component {
   render() {
     return (
       <header>
-        <h1>geoGRAFFITI</h1>
-        <SettingsContainer uid={this.props.uid} />
+        <h1>
+          <span className="geo">geo</span>GRAFFITI
+        </h1>
+        <div>
+          <SettingsContainer uid={this.props.uid} />
+        </div>
       </header>
     );
   }
