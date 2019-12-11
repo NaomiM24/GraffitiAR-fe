@@ -43,7 +43,7 @@ class CanvasDisplayer extends React.Component {
     const { votesAdded, graffiti, username } = this.state;
     if (!username) return <p>Loading</p>;
     return (
-      <div>
+      <div className="canvas-displayer-page">
         <button>
           <Link to={`/view`}>back</Link>
         </button>
@@ -58,15 +58,17 @@ class CanvasDisplayer extends React.Component {
           </button>
           {graffiti.votes + votesAdded}
         </p>
-        <CanvasDraw
-          disabled
-          hideGrid
-          lazyRadius={0}
-          brushRadius={0}
-          catenaryColor={"#FFFFFFFF"}
-          ref={canvasDraw => (this.loadableCanvas = canvasDraw)}
-          saveData={graffiti.drawing_str}
-        />
+        <div className="canvas-displayer">
+          <CanvasDraw
+            disabled
+            hideGrid
+            lazyRadius={0}
+            brushRadius={0}
+            catenaryColor={"#FFFFFFFF"}
+            ref={canvasDraw => (this.loadableCanvas = canvasDraw)}
+            saveData={graffiti.drawing_str}
+          />
+        </div>
       </div>
     );
   }

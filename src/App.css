@@ -1,17 +1,12 @@
-/* font-family: 'Major Mono Display', monospace;
-font-family: 'Barrio', cursive;
-font-family: 'Monofett', cursive; */
-
 @font-face {
   font-family: "bombing";
   src: url("/bombing.ttf");
 }
 
 .App {
-  /* margin: 0; */
   text-align: center;
   height: calc(var(--vh, 1vh) * 100);
-  background-color: rgb(176, 176, 216);
+  background-color: #b8e4cd;
 }
 
 body {
@@ -20,9 +15,9 @@ body {
 }
 
 .App-main {
-  width: 100vw;
+  width: calc(var(--vw, 1vw) * 100);
   display: grid;
-  grid-template-rows: 15% 70% 15%;
+  /* grid-template-rows: 5% 95%; */
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
@@ -35,22 +30,26 @@ body {
 }
 
 .App-header {
-  grid-row: 1/2;
-  position: fixed;
   justify-items: centre;
 }
 
 header {
+  grid-row: 1/2;
+  /* position: fixed; */
+  background-color: #36a9c0;
+  width: 100%;
   margin: 0;
   display: grid;
   grid-template-columns: 3fr 1fr;
   align-items: center;
   justify-items: center;
-  /* position: fixed; */
+  position: fixed;
+  z-index: 1;
+  padding: 0px;
 }
 
 .App-router {
-  margin: 20% 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
   grid-row: 2/3;
 }
 
@@ -58,20 +57,20 @@ header {
   grid-row: 3/4;
 }
 nav {
-  background-color: rgb(115, 115, 196);
+  background-color: #f74909;
   margin: 0;
   width: 100%;
   color: white;
   position: fixed;
   bottom: 0;
   right: 0;
-  padding: 0.25em;
   display: flex;
   justify-content: space-around;
+  z-index: 1;
 }
 
 nav a {
-  padding: 14px 40px;
+  padding: 7.5px 40px;
 }
 a:link {
   color: black;
@@ -86,19 +85,6 @@ a:visited {
   width: 30px;
 }
 
-@media only screen and (max-width: 400px) {
-  .App-main {
-    grid-template-rows: 7.5% 85% 7.5%;
-  }
-  .App-header {
-    font-size: 1.5em;
-    text-align: center;
-  }
-  .App-navbar {
-    padding: 0.1em;
-  }
-}
-
 li {
   list-style-type: none;
   display: inline;
@@ -111,12 +97,27 @@ button {
   background-color: rgba(84, 84, 179, 0);
 }
 
+.map {
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+.canvas-draw-page,
+.map {
+  margin-top: 25%;
+  z-index: 0;
+}
+
 .paint-color {
   border-radius: 50%;
   padding: 1em;
   border-color: white;
   border-style: solid;
   border-width: 1px;
+}
+
+.slider {
+  margin: 1em 0;
 }
 
 #red {
@@ -143,26 +144,51 @@ button {
   width: 20px;
 }
 
+.canvas-list-page,
+.canvas-displayer {
+  margin-top: 25%;
+}
 .canvas-list-page {
+  margin-bottom: 10%;
+  height: 75%;
   padding: 0;
-  background-color: rgb(176, 176, 216);
+  background-color: #b8e4cd;
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 100%;
+  z-index: 0;
+  color: black;
+}
+.canvas-list-page h2 {
+  font-size: 1em;
+}
+.canvas-list-page p {
+  font-size: 0.8em;
 }
 .canvas-list {
   display: flex;
   flex-direction: column;
-  margin: 0 5%;
-  margin-bottom: 15%;
   padding: 0;
-  height: 100%;
-  /* overflow-y: auto; */
+  margin: 0 5%;
+  margin-bottom: 10%;
+  height: 80%;
+  overflow-y: scroll;
 }
+
 .canvas-card {
-  color: black;
-  background-color: white;
+  color: white;
+  background-color: #36a9c0;
   margin: 5px 0px;
   padding: 0;
   justify-self: center;
   border-radius: 10px;
+}
+.canvas-card a:link {
+  color: white;
+}
+.canvas-card a:visited {
+  color: white;
 }
 .view {
   display: grid;
@@ -184,13 +210,27 @@ button {
   grid-column: 1/2;
 }
 
-.slider {
-  margin: 1em 0;
-}
 .marker-user {
   color: black;
 }
 
+.canvas-displayer-page {
+  color: black;
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, 0);
+  height: 75%;
+  margin: 25% 5px 0 5px;
+  display: flex;
+  flex-direction: column;
+}
+.canvas-displayer {
+  position: fixed;
+  left: 50%;
+  transform: translate(-51.25%, 0);
+  margin-top: 100%;
+  /* width: 100px; */
+}
 .login {
   display: flex;
   flex-direction: column;

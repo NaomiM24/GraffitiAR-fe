@@ -42,7 +42,7 @@ export default class CanvasTest extends Component {
   render() {
     const { uid } = this.props;
     return (
-      <main>
+      <main className="canvas-draw-page">
         {this.state.posted && (
           <p className="posted-graffiti">
             Your graffiti has been successfully posted!
