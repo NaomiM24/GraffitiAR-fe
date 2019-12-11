@@ -36,6 +36,7 @@ class ChangeUsername extends Component {
         <form onSubmit={this.changeUsernameByFirebaseID}>
           <label>
             New Username:
+            <br />
             <input
               value={this.state.newUsername}
               onChange={this.handleChange}
