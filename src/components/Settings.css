@@ -14,7 +14,8 @@
   position: fixed;
   top: 0;
   left: 0;
-  transition: transform 0.3s cubic-bezier(0, 0.52, 0, 1);
+  transition-timing-function: ease-in;
+  transition: 0.3s;
   overflow: scroll;
   z-index: 1000;
   color: #0e1c36;
@@ -120,7 +121,8 @@ img {
   position: fixed;
   top: 0;
   left: 0;
-  transition: transform 0.3s cubic-bezier(0, 0.52, 0, 1);
+  transition-timing-function: ease-in;
+  transition: 0.3s;
   overflow: scroll;
   z-index: 1000;
   color: #0e1c36;
