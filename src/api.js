@@ -1,19 +1,25 @@
 import axios from "axios";
 
-const baseURL = "https://be-geograffiti.herokuapp.com/api";
+const baseURL = "https://geograffiti.pythonanywhere.com/api";
 
 export const postUser = userObject => {
   return axios.post(`${baseURL}/users`, userObject);
 };
 
-export const postCanvas = (firebase_id, drawing_str, geo_lat, geo_long, created_at) => {
+export const postCanvas = (
+  firebase_id,
+  drawing_str,
+  geo_lat,
+  geo_long,
+  created_at
+) => {
   return axios.post(`${baseURL}/graffiti`, {
     firebase_id,
     drawing_str,
     geo_lat,
     geo_long,
     votes: 0,
-    created_at
+    created_at,
   });
 };
 
