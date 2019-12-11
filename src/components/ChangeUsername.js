@@ -17,20 +17,25 @@ class ChangeUsername extends Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  changeUsernameByFirebaseID() {
-    api.putUsernameByFirebaseID(
-      {
-        username: this.state.newUsername,
-      },
-      this.props.uid
-    );
+  changeUsernameByFirebaseID(event) {
+    event.preventDefault();
+    api
+      .putUsernameByFirebaseID(
+        {
+          username: this.state.newUsername,
+        },
+        this.props.uid
+      )
+      .then(() => {
+        this.setState({ newUsername: "" });
+      });
   }
   render() {
     return (
-      <div>
-        <form>
+      <div className="change">
+        <form onSubmit={this.changeUsernameByFirebaseID}>
           <label>
-            New Username
+            New Username:
             <input
               value={this.state.newUsername}
               onChange={this.handleChange}
@@ -40,7 +45,7 @@ class ChangeUsername extends Component {
               placeholder="e.g. ParryHotter"
             />
           </label>
-          <button onClick={this.changeUsernameByFirebaseID()}>Confirm</button>
+          <button type="submit">Confirm</button>
         </form>
       </div>
     );

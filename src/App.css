@@ -173,8 +173,8 @@ button {
   height: calc(var(--vh, 1vh) * 100);
   width: 100vw;
   justify-content: center;
-  /* margin: 0px 2.5vw; */
 }
+
 .login h1 {
   margin: 30px 0 10px 0;
   line-height: 1;
@@ -215,7 +215,6 @@ button {
 }
 
 .login form button {
-  border: 1px solid black;
   border-radius: 25px;
   width: 150px;
   padding: 8px 0;

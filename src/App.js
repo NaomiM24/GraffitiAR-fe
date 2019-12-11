@@ -24,6 +24,7 @@ class App extends Component {
     super(props);
     this.state = {
       user: {},
+      isLoading: true,
     };
   }
 
@@ -34,14 +35,15 @@ class App extends Component {
   authListener() {
     fire.auth().onAuthStateChanged(user => {
       if (user) {
-        this.setState({ user });
+        this.setState({ user, isLoading: false });
       } else {
-        this.setState({ user: null });
+        this.setState({ user: null, isLoading: false });
       }
     });
   }
   render() {
-    const { user } = this.state;
+    const { user, isLoading } = this.state;
+    if (isLoading) return null;
     return (
       <div className="App">
         {!user ? (

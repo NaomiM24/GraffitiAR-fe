@@ -4,6 +4,7 @@ class Toggle extends Component {
   state = {
     showContent: false,
   };
+
   render() {
     return (
       <div>
