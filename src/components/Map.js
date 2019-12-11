@@ -110,11 +110,11 @@ const WrappedMap = withScriptjs(withGoogleMap(GMap));
 
 export default function Map() {
   return (
-    <div style={{ width: "100vw", height: "100vh" }} className="map">
+    <div style={{ width: "95%", height: "90%" }} className="map">
       <WrappedMap
         googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_KEY}`}
         loadingElement={<div style={{ height: "75%", marginTop: "25%" }} />}
-        containerElement={<div style={{ height: "75%", width: "100%" }} />}
+        containerElement={<div style={{ height: "100%", width: "100%" }} />}
         mapElement={<div style={{ height: "100%", width: "100%" }} />}
       />
     </div>

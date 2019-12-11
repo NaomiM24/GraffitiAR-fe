@@ -4,67 +4,74 @@
 
 .App {
   text-align: center;
-  height: calc(var(--vh, 1vh) * 100);
+  /* height: calc(var(--vh, 1vh) * 100); */
   background-color: #b8e4cd;
-}
-
-body {
-  margin: 0;
-  position: absolute;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
 .App-main {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: calc(var(--vw, 1vw) * 100);
+  height: calc(var(--vh, 1vh) * 100);
   display: grid;
-  /* grid-template-rows: 5% 95%; */
-  align-items: center;
-  justify-content: center;
+  grid-template-areas: "header" "main" "nav";
+  grid-template-rows: 75px 1fr 45px;
   font-size: calc(10px + 2vmin);
   color: white;
-}
-
-.App-link {
-  color: #09d3ac;
-}
-
-.App-header {
-  justify-items: centre;
+  background-color: #b8e4cd;
 }
 
 header {
-  grid-row: 1/2;
-  /* position: fixed; */
+  grid-area: header;
   background-color: #36a9c0;
   width: 100%;
+  height: 100%;
   margin: 0;
   display: grid;
+  grid-template-areas: "title settings";
   grid-template-columns: 3fr 1fr;
   align-items: center;
   justify-items: center;
-  position: fixed;
-  z-index: 1;
   padding: 0px;
+}
+
+header h1 {
+  margin: 0;
+  grid-area: title;
+  font-family: "Permanent Marker", cursive;
+  font-size: 2em;
+  color: #0e1c36;
+}
+
+header h1 .geo {
+  font-family: "Lobster", cursive;
+  font-size: 0.7em;
 }
 
 .App-router {
   margin: 0px 0px 0px 0px;
-  grid-row: 2/3;
+  grid-area: main;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .App-navbar {
-  grid-row: 3/4;
+  grid-area: nav;
 }
+
 nav {
   background-color: #f74909;
   margin: 0;
   width: 100%;
   color: white;
-  position: fixed;
-  bottom: 0;
-  right: 0;
   display: flex;
   justify-content: space-around;
-  z-index: 1;
 }
 
 nav a {
@@ -97,12 +104,8 @@ button {
 
 .canvas-draw-page,
 .map {
-  position: fixed;
-  left: 50%;
-  transform: translate(-50%, 0);
-  margin-top: 25%;
-  margin-bottom: 20%;
-  /* z-index: 0; */
+  height: 100%;
+  margin: 20px 0 20px 0;
 }
 
 .paint-color {
@@ -123,6 +126,7 @@ button {
 
 .slider {
   margin: 1em 0;
+  color: red;
 }
 
 #red {
@@ -148,6 +152,7 @@ button {
 }
 .canvas-change {
   width: 20px;
+  height: 20px;
 }
 
 .canvas-list-page,
@@ -163,7 +168,6 @@ button {
   left: 50%;
   transform: translate(-50%, 0);
   width: 100%;
-  z-index: 0;
   color: black;
 }
 .canvas-list-page h2 {
@@ -235,7 +239,6 @@ button {
   left: 50%;
   transform: translate(-51.25%, 0);
   margin-top: 100%;
-  /* width: 100px; */
 }
 .login {
   display: flex;
