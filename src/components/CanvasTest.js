@@ -58,31 +58,41 @@ export default class CanvasTest extends Component {
         <button
           onClick={this.handleColorChange}
           name="#0000ff"
-          className="paint-color"
+          className={
+            this.state.color === "#0000ff" ? "selected-color" : "paint-color"
+          }
           id="blue"
         ></button>
         <button
           onClick={this.handleColorChange}
           name="#ff0000"
-          className="paint-color"
+          className={
+            this.state.color === "#ff0000" ? "selected-color" : "paint-color"
+          }
           id="red"
         ></button>
         <button
           onClick={this.handleColorChange}
           name="#00ff00"
-          className="paint-color"
+          className={
+            this.state.color === "#00ff00" ? "selected-color" : "paint-color"
+          }
           id="green"
         ></button>
         <button
           onClick={this.handleColorChange}
           name="#ffff00"
-          className="paint-color"
+          className={
+            this.state.color === "#ffff00" ? "selected-color" : "paint-color"
+          }
           id="yellow"
         ></button>
         <button
           onClick={this.handleColorChange}
           name="#000000"
-          className="paint-color"
+          className={
+            this.state.color === "#000000" ? "selected-color" : "paint-color"
+          }
           id="black"
         ></button>
         <Slider
