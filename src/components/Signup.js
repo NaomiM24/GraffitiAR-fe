@@ -23,23 +23,31 @@ class Signup extends Component {
 
   signup(event) {
     event.preventDefault();
-    if (this.state.password !== this.state.confirmPassword) {
+    const { email, password, username, confirmPassword } = this.state;
+    if (password !== confirmPassword) {
       this.setState({ errMsg: "Passwords do not match." });
     } else {
       fire
         .auth()
-        .createUserWithEmailAndPassword(this.state.email, this.state.password)
+        .createUserWithEmailAndPassword(email, password)
         .then(data => {
           api.postUser({
             firebase_id: data.user.uid,
-            username: this.state.username,
+            username,
             display_pic_url: "https://i.imgur.com/MffRKW2.jpg",
           });
           navigate("/");
         })
         .catch(err => {
-          console.log(err);
-          this.setState({ errMsg: err.message });
+          if (email === "") {
+            this.setState({ errMsg: "Please enter a valid email" });
+          } else if (password === "") {
+            this.setState({ errMsg: "Please enter a password" });
+          } else if (username === "") {
+            this.setState({ errMsg: "Please enter a username" });
+          } else {
+            this.setState({ errMsg: err.message });
+          }
         });
     }
   }
@@ -48,10 +56,12 @@ class Signup extends Component {
     return (
       <div className="login">
         <div className="login-tile">
-          <h1>geoGRAFFITI</h1>
+          <h1>
+            <span className="geo">geo</span>GRAFFITI
+          </h1>
           <form>
             <label>
-              Email address
+              Email address:{" "}
               <input
                 value={this.state.email}
                 onChange={this.handleChange}
@@ -63,7 +73,7 @@ class Signup extends Component {
               />
             </label>
             <label>
-              Password
+              Password:{" "}
               <input
                 value={this.state.password}
                 onChange={this.handleChange}
@@ -74,7 +84,7 @@ class Signup extends Component {
               />
             </label>
             <label>
-              Confirm Password
+              Confirm Password:{" "}
               <input
                 value={this.state.confirmPassword}
                 onChange={this.handleChange}
@@ -85,7 +95,7 @@ class Signup extends Component {
               />
             </label>
             <label>
-              Username
+              Username:{" "}
               <input
                 value={this.state.username}
                 onChange={this.handleChange}
@@ -95,9 +105,16 @@ class Signup extends Component {
                 required
               />
             </label>
-            <button onClick={this.signup}>Signup</button>
-            {this.state.errMsg && <p>{this.state.errMsg}</p>}
+            <button onClick={this.signup}>Sign Up</button>
           </form>
+
+          {this.state.errMsg && (
+            <div className="signupError">
+              <img src="/icon.png" />
+              <p>{this.state.errMsg}</p>
+            </div>
+          )}
+
           <section>
             <p>Already have an account?</p>
             <Link to="/">Log In</Link>

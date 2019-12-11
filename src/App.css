@@ -2,9 +2,8 @@
 font-family: 'Barrio', cursive;
 font-family: 'Monofett', cursive; */
 
-@font-face {
-  font-family: "bombing";
-  src: url("/bombing.ttf");
+* {
+  font-family: "Montserrat Alternates", sans-serif;
 }
 
 .App {
@@ -27,7 +26,6 @@ body {
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-  font-family: "Major Mono Display", monospace;
 }
 
 .App-link {
@@ -162,8 +160,12 @@ button {
   justify-content: center;
   height: calc(var(--vh, 1vh) * 100);
   width: 100vw;
-  background-image: url("./assets/graffiti_background.jpg");
-  background-repeat: repeat;
+  background: url("./assets/graffiti_background.jpg") no-repeat center center
+    fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 .login-tile {
@@ -174,13 +176,15 @@ button {
   /* margin: 0px 2.5vw; */
 }
 .login h1 {
-  font-family: "bombing";
+  margin: 30px 0 10px 0;
+  line-height: 1;
+  font-family: "Permanent Marker", cursive;
   font-size: 100px;
-  color: black;
+  color: #0e1c36;
 }
 
 .login h1 .geo {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: "Lobster", cursive;
   font-size: 60px;
 }
 
@@ -188,10 +192,9 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  height: 200px;
   margin: auto;
   font-size: x-large;
-  color: black;
+  color: #0e1c36;
 }
 
 .login form label {
@@ -217,9 +220,122 @@ button {
   width: 150px;
   padding: 8px 0;
   margin: 30px auto;
-  font-size: large;
+  font-size: x-large;
+  font-weight: 600;
+  background-color: #f74909;
+  color: #f3f4f9;
+}
+
+.login form button:hover {
+  background-color: #ff7a4a;
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+.loginError {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 30px;
+  line-height: 30px;
+  vertical-align: middle;
+  color: #0e1c36;
+}
+
+.loginError p {
+  margin: 0 0 0 10px;
+  max-width: 70vw;
+  font-size: larger;
+}
+
+.signupError {
+  font-size: x-large;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  line-height: 30px;
+  vertical-align: middle;
+  margin-top: 0;
+  color: #0e1c36;
+}
+
+.signupError p {
+  margin: 0 0 0 10px;
+  max-width: 70vw;
+  font-size: larger;
 }
 
 .login section {
-  font-size: large;
+  font-size: x-large;
+  font-weight: 600;
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  bottom: 40px;
+  color: #0e1c36;
+}
+
+.login section p {
+  display: inline;
+  padding-right: 10px;
+}
+
+@media only screen and (max-width: 650px) {
+  .login h1 {
+    margin: 50px 0 10px 0;
+    font-size: 70px;
+  }
+
+  .login h1 .geo {
+    font-size: 55px;
+  }
+
+  .login section {
+    font-size: larger;
+    bottom: 20px;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .login h1 {
+    font-size: 45px;
+  }
+
+  .login h1 .geo {
+    font-size: 35px;
+  }
+
+  .login section p {
+    display: block;
+    padding-right: 10px;
+  }
+}
+
+@media only screen and (max-height: 680px) {
+  .login h1 {
+    margin: 30px 0 10px 0;
+  }
+
+  .login form label input {
+    padding: 0.25em 0.5em;
+  }
+
+  .loginError {
+    font-size: large;
+    margin-top: 30px;
+  }
+
+  .signupError {
+    font-size: large;
+  }
+
+  .login form button {
+    padding: 4px 0;
+    margin: 15px auto;
+    font-size: x-large;
+    font-weight: 600;
+    background-color: #f74909;
+    color: #f3f4f9;
+  }
 }
