@@ -34,28 +34,32 @@ export default class AllOwnGraffiti extends Component {
     }
     return (
       <div id="flyoutMenu" className={visibility}>
-        <button onClick={this.props.handleClick}>
-          <img src="/left-arrow.png" alt="back" />
-        </button>
-        <h2>All Your Graffiti</h2>
-        {myGraffiti === null ? (
-          <p>loading...</p>
-        ) : myGraffiti.length !== 0 ? (
-          <ul>
-            {myGraffiti &&
-              myGraffiti.map(graffiti => {
-                return (
-                  <SingleOwnGraffiti
-                    graffiti={graffiti}
-                    key={graffiti.id}
-                    removeGraffiti={this.removeGraffiti}
-                  />
-                );
-              })}
-          </ul>
-        ) : (
-          <p>You haven't posted any graffiti yet</p>
-        )}
+        <div id="all-own-graffiti">
+          <div>
+            <button onClick={this.props.handleClick}>
+              <img src="/left-arrow.png" alt="back" />
+            </button>
+          </div>
+          <h2>All Your Graffiti</h2>
+          {myGraffiti === null ? (
+            <p>loading...</p>
+          ) : myGraffiti.length !== 0 ? (
+            <ul className="own-graffiti-list">
+              {myGraffiti &&
+                myGraffiti.map(graffiti => {
+                  return (
+                    <SingleOwnGraffiti
+                      graffiti={graffiti}
+                      key={graffiti.id}
+                      removeGraffiti={this.removeGraffiti}
+                    />
+                  );
+                })}
+            </ul>
+          ) : (
+            <p>You haven't posted any graffiti yet</p>
+          )}
+        </div>
       </div>
     );
   }

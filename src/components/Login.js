@@ -77,7 +77,7 @@ class Login extends Component {
 
           {this.state.errMsg && (
             <div className="loginError">
-              <img src="/icon.png" />
+              <img src="/icon.png" alt="error" />
               <p>{this.state.errMsg}</p>
             </div>
           )}
