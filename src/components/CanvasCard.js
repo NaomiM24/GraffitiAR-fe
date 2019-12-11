@@ -5,6 +5,7 @@ import * as api from "../api";
 class CanvasCard extends Component {
   state = {
     username: null,
+    displayPic: null,
     isLoading: true,
     err: false,
   };
@@ -14,7 +15,12 @@ class CanvasCard extends Component {
     api
       .getUserById(graffiti.firebase_id)
       .then(({ data }) => {
-        this.setState({ username: data.username, isLoading: false });
+        console.log(data);
+        this.setState({
+          username: data.username,
+          isLoading: false,
+          displayPic: data.display_pic_url,
+        });
       })
       .catch(() => {
         this.setState({
@@ -26,7 +32,7 @@ class CanvasCard extends Component {
 
   render() {
     const { graffiti } = this.props;
-    const { username, isLoading, err } = this.state;
+    const { username, isLoading, err, displayPic } = this.state;
     return (
       <li className="canvas-card">
         {isLoading ? (
@@ -42,6 +48,9 @@ class CanvasCard extends Component {
             <p className="posted-on">{graffiti.created_at}</p>
             <p className="likes">
               <img src="/likes.png" alt="likes" /> {graffiti.votes}
+            </p>
+            <p className="posted-by-url">
+              <img src={displayPic} alt="display pic" />
             </p>
           </Link>
         )}
