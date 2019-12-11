@@ -34,13 +34,16 @@ class CanvasCard extends Component {
         ) : err ? (
           <p>{err}</p>
         ) : (
-          <>
-            <p>posted by: {username}</p>
-            <p>
+          <Link to={`/view/${graffiti.id}`} className="view">
+            <p className="posted-by">{username}</p>
+            {/* <Link to={`/view/${graffiti.id}`} className="view"> */}
+            {/* View Graffiti
+            </Link> */}
+            <p className="posted-on">{graffiti.created_at}</p>
+            <p className="likes">
               <img src="/likes.png" alt="likes" /> {graffiti.votes}
             </p>
-            <Link to={`/view/${graffiti.id}`}>View Graffiti</Link>
-          </>
+          </Link>
         )}
       </li>
     );
