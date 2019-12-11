@@ -507,7 +507,7 @@ button {
   }
 }
 
-@media only screen and (max-height: 680px) {
+@media only screen and (max-height: 500px) {
   .canvas-draw-page {
     margin: 5px 0;
     height: 100%;
