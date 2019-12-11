@@ -77,10 +77,6 @@ img {
 }
 
 .deleteAccount button {
-  position: fixed;
-  bottom: 50px;
-  right: calc(calc(var(--vw, 1vw) * 50) - 125px);
-  margin: 0;
   background-color: #0e1c36;
 }
 
