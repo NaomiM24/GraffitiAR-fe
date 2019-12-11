@@ -4,6 +4,8 @@
 
 The web application is hosted here: [INSERT LINK]
 
+Note the application has been built with Chrome/Safari. Performance on other browsers has not been tested.
+
 ## To run this project locally:
 
 1. Click on the repo's "Clone or Download" button link and copy the URL (https://github.com/NaomiM24/GraffitiAR-fe.gitt)
@@ -35,7 +37,7 @@ The map rendering has been handled using GoogleMaps API. For the map to work, th
 
 ### Back end & RESTful API:
 
-A database which uses SQLite has already been set up (see: https://github.com/jcraggs/BE-Geograffiti). This database contains all the graffiti and users data. The database is accesible via an API and is hosted on Heroku (see: https://be-geograffiti.herokuapp.com/api).
+A database which uses SQLite has already been set up (see: https://github.com/jcraggs/BE-Geograffiti). This database contains all the graffiti and users data. The database is accesible via an API and is hosted on Heroku (see: https://geograffiti.pythonanywhere.com/api).
 
 ## React App component stucture:
 
