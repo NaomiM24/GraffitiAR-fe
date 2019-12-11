@@ -51,26 +51,32 @@ class CanvasList extends Component {
   };
 
   render() {
+    console.log("inside canvas list");
     const { nearbyMarkers } = this.state;
-    return (
-      <>
-        <h2>Graffiti in your location</h2>
-        <button onClick={this.getGeoLocation}>
-          <img src="/refresh.png" alt="refresh" />
-        </button>
-        {nearbyMarkers === null ? (
-          <p>Loading...</p>
-        ) : nearbyMarkers.length !== 0 ? (
-          <ul className="canvas-list">
-            {nearbyMarkers.map(marker => {
-              return <CanvasCard graffiti={marker} key={marker.id} />;
-            })}
-          </ul>
-        ) : (
-          <p>No markers nearby</p>
-        )}
-      </>
-    );
+    const { uid } = this.props;
+    if (uid === undefined) {
+      return (window.location.href = "/");
+    } else {
+      return (
+        <>
+          <h2>Graffiti in your location</h2>
+          <button onClick={this.getGeoLocation}>
+            <img src="/refresh.png" alt="refresh" />
+          </button>
+          {nearbyMarkers === null ? (
+            <p>Loading...</p>
+          ) : nearbyMarkers.length !== 0 ? (
+            <ul className="canvas-list">
+              {nearbyMarkers.map(marker => {
+                return <CanvasCard graffiti={marker} key={marker.id} />;
+              })}
+            </ul>
+          ) : (
+            <p>No markers nearby</p>
+          )}
+        </>
+      );
+    }
   }
 }
 
