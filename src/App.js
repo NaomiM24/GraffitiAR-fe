@@ -60,7 +60,7 @@ class App extends Component {
                 uid={user.uid}
               />
               <Map path="/" className="App-router" />
-              <CanvasList path="/view" className="App-router" />
+              <CanvasList path="/view" className="App-router" uid={user.uid}/>
               <CanvasDisplayer path="/view/:id" />
             </Router>
           </main>
