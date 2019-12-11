@@ -108,6 +108,12 @@ button {
   margin: 20px 0 20px 0;
 }
 
+.canvas-draw-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
 .paint-color {
   border-radius: 50%;
   padding: 1em;
@@ -484,6 +490,17 @@ button {
     font-weight: 600;
     background-color: #f74909;
     color: #f3f4f9;
+  }
+}
+
+@media only screen and (max-height: 680px) {
+  .canvas-draw-page {
+    margin: 5px 0;
+    height: 100%;
+  }
+
+  .App-main {
+    grid-template-rows: 50px 1fr 40px;
   }
 }
 

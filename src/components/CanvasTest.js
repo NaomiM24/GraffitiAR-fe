@@ -39,6 +39,11 @@ export default class CanvasTest extends Component {
         return { dimension: window.innerWidth * 0.4 };
       });
     }
+    if (window.innerHeight < 570) {
+      this.setState(() => {
+        return { dimension: window.innerWidth * 0.7 };
+      });
+    }
     this.getGeoLocation();
   }
 
@@ -70,46 +75,48 @@ export default class CanvasTest extends Component {
         {this.state.postErr && (
           <p className="posted-graffiti-error">Error! Please try again later</p>
         )}
-        <button
-          onClick={this.handleColorChange}
-          name="#0000ff"
-          className={
-            this.state.color === "#0000ff" ? "selected-color" : "paint-color"
-          }
-          id="blue"
-        ></button>
-        <button
-          onClick={this.handleColorChange}
-          name="#ff0000"
-          className={
-            this.state.color === "#ff0000" ? "selected-color" : "paint-color"
-          }
-          id="red"
-        ></button>
-        <button
-          onClick={this.handleColorChange}
-          name="#00ff00"
-          className={
-            this.state.color === "#00ff00" ? "selected-color" : "paint-color"
-          }
-          id="green"
-        ></button>
-        <button
-          onClick={this.handleColorChange}
-          name="#ffff00"
-          className={
-            this.state.color === "#ffff00" ? "selected-color" : "paint-color"
-          }
-          id="yellow"
-        ></button>
-        <button
-          onClick={this.handleColorChange}
-          name="#000000"
-          className={
-            this.state.color === "#000000" ? "selected-color" : "paint-color"
-          }
-          id="black"
-        ></button>
+        <section className="colours">
+          <button
+            onClick={this.handleColorChange}
+            name="#0000ff"
+            className={
+              this.state.color === "#0000ff" ? "selected-color" : "paint-color"
+            }
+            id="blue"
+          ></button>
+          <button
+            onClick={this.handleColorChange}
+            name="#ff0000"
+            className={
+              this.state.color === "#ff0000" ? "selected-color" : "paint-color"
+            }
+            id="red"
+          ></button>
+          <button
+            onClick={this.handleColorChange}
+            name="#00ff00"
+            className={
+              this.state.color === "#00ff00" ? "selected-color" : "paint-color"
+            }
+            id="green"
+          ></button>
+          <button
+            onClick={this.handleColorChange}
+            name="#ffff00"
+            className={
+              this.state.color === "#ffff00" ? "selected-color" : "paint-color"
+            }
+            id="yellow"
+          ></button>
+          <button
+            onClick={this.handleColorChange}
+            name="#000000"
+            className={
+              this.state.color === "#000000" ? "selected-color" : "paint-color"
+            }
+            id="black"
+          ></button>
+        </section>
         <Slider
           value={this.state.brushRadius}
           min={this.state.min}
