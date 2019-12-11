@@ -10,6 +10,7 @@ import Header from "./components/Header";
 import Signup from "./components/Signup";
 import CanvasList from "./components/CanvasList";
 import CanvasDisplayer from "./components/CanvasDisplayer";
+import RedirectLogin from "./components/RedirectLogin";
 
 let vh = window.innerHeight * 0.01;
 document.documentElement.style.setProperty("--vh", `${vh}px`);
@@ -61,7 +62,7 @@ class App extends Component {
                 uid={user.uid}
               />
               <Map path="/" className="App-router" />
-              <CanvasList path="/view" className="App-router" uid={user.uid}/>
+              <CanvasList path="/view" className="App-router" uid={user.uid} />
               <CanvasDisplayer path="/view/:id" />
             </Router>
           </main>
