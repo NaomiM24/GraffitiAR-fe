@@ -1,13 +1,32 @@
+* {
+  font-family: "Montserrat Alternates", sans-serif;
+}
+
 #flyoutMenu {
+  height: calc(var(--vh, 1vh) * 100);
   width: 100vw;
-  height: 100vh;
-  background-color: #ffe600;
+  background: url("../assets/graffiti_background.jpg") no-repeat center center
+    fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   position: fixed;
   top: 0;
   left: 0;
   transition: transform 0.3s cubic-bezier(0, 0.52, 0, 1);
   overflow: scroll;
   z-index: 1000;
+  color: #0e1c36;
+}
+
+.settings-tile {
+  background-color: rgba(199, 236, 241, 0.7);
+  height: calc(var(--vh, 1vh) * 100);
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 #flyoutMenu.hide {
@@ -17,6 +36,11 @@
 #flyoutMenu.show {
   transform: translate3d(0vw, 0, 0);
   overflow: hidden;
+}
+
+#flyoutMenu h1 {
+  font-size: 50px;
+  margin: 10px 0 20px 0;
 }
 
 #flyoutMenu h2 a {
@@ -31,4 +55,70 @@
 
 img {
   height: 30px;
+}
+
+.close {
+  width: 50px;
+  height: 50px;
+  margin: 30px auto 0px auto;
+}
+
+.options {
+  height: calc(var(--vh, 1vh) * 45);
+  width: calc(var(--vw, 1vw) * 80);
+  border-top: 2px solid #0e1c36;
+  border-bottom: 2px solid #0e1c36;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: scroll;
+}
+
+.options button {
+  border-radius: 25px;
+  width: 250px;
+  padding: 5px 0;
+  margin: 10px auto;
+  font-size: large;
+  font-weight: 600;
+  background-color: #f74909;
+  color: #f3f4f9;
+}
+
+.deleteAccount button {
+  position: fixed;
+  bottom: 50px;
+  right: calc(calc(var(--vw, 1vw) * 50) - 125px);
+  margin: 0;
+  background-color: #0e1c36;
+}
+
+.username div {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+}
+
+.picture div {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+}
+
+.change form label {
+  font-size: x-large;
+}
+
+.change form label input {
+  width: 200px;
+  margin: 0 auto;
+  font-size: large;
+  border: 1px solid black;
+  border-radius: 25px;
+  padding: 0.2em 0.5em;
+}
+
+.change button {
+  width: 150px;
 }

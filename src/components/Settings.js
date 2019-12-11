@@ -22,7 +22,6 @@ class Settings extends Component {
   }
 
   render() {
-
     let visibility = "hide";
 
     if (this.props.settingsVisibility) {
@@ -31,31 +30,40 @@ class Settings extends Component {
 
     return (
       <div id="flyoutMenu" className={visibility}>
-        <button onClick={this.props.handleClick}>
-          <img src="./close.png" alt="close" />
-        </button>
-        <h1>Settings</h1>
-      
-        <Link to="/">
-          <button onClick={this.logout}>Logout</button>
-        </Link>
-        <Toggle buttonName="Change Username">
-          <ChangeUsername uid={this.props.uid} />
-        </Toggle>
-        <Toggle buttonName="Change Display Picture">
-          <ChangeDisplayPicture uid={this.props.uid} />
-        </Toggle>
-        <button onClick={this.handleClick}>View Your Graffiti</button>
-        <AllOwnGraffiti
-          handleClick={this.handleClick}
-          graffitiVisibility={this.state.graffitiVisible}
-          uid={this.props.uid}
-        />
-        <Link to="/">
-          <button onClick={this.handleDeleteAccount}>
-            Delete Your Account :(
+        <div className="settings-tile">
+          <button className="close" onClick={this.props.handleClick}>
+            <img src="./close.png" alt="close" />
           </button>
-        </Link>
+          <h1>Settings</h1>
+          <section className="options">
+            <Link to="/" className="logout">
+              <button onClick={this.logout}>Logout</button>
+            </Link>
+            <div className="username">
+              <Toggle buttonName="Change Username">
+                <ChangeUsername uid={this.props.uid} />
+              </Toggle>
+            </div>
+            <div className="picture">
+              <Toggle buttonName="Change Display Picture">
+                <ChangeDisplayPicture uid={this.props.uid} />
+              </Toggle>
+            </div>
+            <div className="viewGraffiti">
+              <button onClick={this.handleClick}>View Your Graffiti</button>
+            </div>
+            <AllOwnGraffiti
+              handleClick={this.handleClick}
+              graffitiVisibility={this.state.graffitiVisible}
+              uid={this.props.uid}
+            />
+            <Link to="/" className="deleteAccount">
+              <button onClick={this.handleDeleteAccount}>
+                Delete Your Account :(
+              </button>
+            </Link>
+          </section>
+        </div>
       </div>
     );
   }
