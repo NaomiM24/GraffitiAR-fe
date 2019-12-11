@@ -95,15 +95,14 @@ button {
   background-color: rgba(84, 84, 179, 0);
 }
 
+.canvas-draw-page,
 .map {
   position: fixed;
   left: 50%;
   transform: translate(-50%, 0);
-}
-.canvas-draw-page,
-.map {
   margin-top: 25%;
-  z-index: 0;
+  margin-bottom: 20%;
+  /* z-index: 0; */
 }
 
 .paint-color {
