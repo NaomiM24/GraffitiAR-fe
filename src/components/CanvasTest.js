@@ -22,6 +22,7 @@ export default class CanvasTest extends Component {
     postErr: false,
     submitBlank: false,
   };
+
   componentDidMount() {
     this.getGeoLocation();
   }
@@ -156,6 +157,7 @@ export default class CanvasTest extends Component {
       </main>
     );
   }
+
   handleColorChange = event => {
     const { name } = event.target;
     this.setState({ color: name });

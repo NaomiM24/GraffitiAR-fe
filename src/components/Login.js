@@ -19,13 +19,22 @@ class Login extends Component {
   }
 
   login(event) {
+    const { email, password } = this.state;
     event.preventDefault();
     fire
       .auth()
-      .signInWithEmailAndPassword(this.state.email, this.state.password)
-      .catch(err => {
-        console.log(err);
-        this.setState({ errMsg: err.message });
+      .signInWithEmailAndPassword(email, password)
+      .then(() => {
+        this.setState({ errMsg: "" });
+      })
+      .catch(() => {
+        if (email === "") {
+          this.setState({ errMsg: "Please enter your email" });
+        } else if (password === "") {
+          this.setState({ errMsg: "Please enter your password" });
+        } else {
+          this.setState({ errMsg: "Your username or password is incorrect" });
+        }
       });
   }
 
@@ -64,8 +73,14 @@ class Login extends Component {
             <button type="submit" onClick={this.login}>
               Login
             </button>
-            {this.state.errMsg && <p>{this.state.errMsg}</p>}
           </form>
+
+          {this.state.errMsg && (
+            <div className="loginError">
+              <img src="/icon.png" />
+              <p>{this.state.errMsg}</p>
+            </div>
+          )}
 
           <section>
             <p>Don't have an account?</p>
