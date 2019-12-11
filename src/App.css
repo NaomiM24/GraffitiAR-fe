@@ -160,29 +160,30 @@ button {
   margin-top: 25%;
 }
 .canvas-list-page {
-  margin-bottom: 10%;
-  height: 75%;
+  margin: 0;
   padding: 0;
   background-color: #b8e4cd;
-  position: fixed;
-  left: 50%;
-  transform: translate(-50%, 0);
   width: 100%;
-  color: black;
+  height: calc((var(--vh, 1vh) * 100) - 120px);
+  margin: 0;
+  color: #0e1c36;
 }
+
 .canvas-list-page h2 {
   font-size: 1em;
 }
+
 .canvas-list-page p {
   font-size: 0.8em;
 }
+
 .canvas-list {
   display: flex;
   flex-direction: column;
   padding: 0;
   margin: 0 5%;
   margin-bottom: 10%;
-  height: 80%;
+  height: 70%;
   overflow-y: scroll;
 }
 
@@ -366,6 +367,17 @@ button {
   padding-right: 10px;
 }
 
+.login section a {
+  display: inline;
+  border-radius: 25px;
+  padding: 8px;
+  margin: 30px auto;
+  font-size: large;
+  font-weight: 600;
+  background-color: #0e1c36;
+  color: #f3f4f9;
+}
+
 @media only screen and (max-width: 650px) {
   .login h1 {
     margin: 50px 0 10px 0;
@@ -379,6 +391,11 @@ button {
   .login section {
     font-size: larger;
     bottom: 20px;
+  }
+
+  .login section a {
+    padding: 6px;
+    margin: 20px auto;
   }
 }
 
@@ -394,6 +411,51 @@ button {
   .login section p {
     display: block;
     padding-right: 10px;
+  }
+}
+
+@media only screen and (max-width: 370px) {
+  .login .login-tile h1 {
+    margin-top: 15px;
+  }
+
+  .login .login-tile form input {
+    margin-bottom: 0px;
+    padding: 2px 0 2px 8px;
+    font-size: medium;
+  }
+
+  .login .login-tile form button {
+    margin-bottom: 0px;
+    padding: 2px 0;
+    font-size: medium;
+  }
+
+  .login section p {
+    display: block;
+    padding-right: 10px;
+    margin: 0 0 5px 0;
+  }
+
+  .login section a {
+    padding: 4px 10px;
+    margin: 0;
+  }
+
+  .signupError {
+    margin: 10px;
+  }
+
+  .signupError p {
+    font-size: medium;
+  }
+
+  .loginError {
+    margin: 10px;
+  }
+
+  .loginError p {
+    font-size: medium;
   }
 }
 
