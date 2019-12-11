@@ -1,10 +1,13 @@
 import React from "react";
+import { Link } from "@reach/router";
 
 const ErrorPage = () => {
   return (
-    <>
-      <h1>NOT FOUND</h1>
-    </>
+    <div>
+      <Link to="/">
+        <p>Page not found. Back to homepage?</p>
+      </Link>
+    </div>
   );
 };
 
