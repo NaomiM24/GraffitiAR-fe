@@ -424,3 +424,29 @@ button {
     color: #f3f4f9;
   }
 }
+
+.error-page img {
+  width: 260px;
+  height: 180px;
+}
+
+.not-logged-in {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: calc(var(--vh, 1vh) * 100);
+  width: 100vw;
+  background: url("./assets/graffiti_background.jpg") no-repeat center center
+    fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.not-logged-in-tile {
+  background-color: rgba(199, 236, 241, 0.7);
+  height: calc(var(--vh, 1vh) * 100);
+  width: 100vw;
+  justify-content: center;
+}
