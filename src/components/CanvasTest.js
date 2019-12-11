@@ -39,6 +39,11 @@ export default class CanvasTest extends Component {
         return { dimension: window.innerWidth * 0.4 };
       });
     }
+    if (window.innerHeight < 570) {
+      this.setState(() => {
+        return { dimension: window.innerWidth * 0.7 };
+      });
+    }
     this.getGeoLocation();
   }
 

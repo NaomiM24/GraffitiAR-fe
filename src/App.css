@@ -425,6 +425,11 @@ button {
     font-size: medium;
   }
 
+  .login .login-tile form label {
+    margin-top: 5px;
+    font-size: large;
+  }
+
   .login .login-tile form button {
     margin-bottom: 0px;
     padding: 2px 0;
