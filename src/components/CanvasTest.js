@@ -63,10 +63,13 @@ export default class CanvasTest extends Component {
           <CanvasTestMessage message="Your graffiti has been successfully posted!" />
         )}
         {this.state.submitBlank && (
-          <CanvasTestMessage message="Draw on canvas to submit!" />
+          <CanvasTestMessage message="Draw on canvas to submit!" type="error" />
         )}
         {this.state.postErr && (
-          <CanvasTestMessage message="Error! Please try again later" />
+          <CanvasTestMessage
+            message="Error! Please try again later"
+            type="error"
+          />
         )}
         <section className="colours">
           <button

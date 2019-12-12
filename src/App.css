@@ -161,7 +161,7 @@ button {
   height: 20px;
 }
 
-#canvas-message {
+.canvas-message {
   width: 90vw;
   position: fixed;
   background-color: #36a9c0;
@@ -171,6 +171,11 @@ button {
   padding: 5% 0;
   margin: 0 5%;
   border-radius: 10px;
+}
+
+#error {
+  background-color: #f74909;
+  color: white;
 }
 
 .canvas-list-page,

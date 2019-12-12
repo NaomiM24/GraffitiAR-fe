@@ -51,7 +51,10 @@ class ChangeUsername extends Component {
           <CanvasTestMessage message="Username successfully changed!" />
         )}
         {this.state.error && (
-          <CanvasTestMessage message="Username could not be changed right now, please try again later" />
+          <CanvasTestMessage
+            message="Username could not be changed right now, please try again later"
+            type="error"
+          />
         )}
         <form onSubmit={this.changeUsernameByFirebaseID}>
           <label>
