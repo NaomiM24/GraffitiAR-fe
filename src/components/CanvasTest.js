@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import CanvasDraw from "react-canvas-draw";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
+import { HueSlider, SaturationSlider } from "react-color-sliders";
 import * as api from "../api";
 import CanvasTestMessage from "./CanvasTestMessage";
 
@@ -22,6 +23,9 @@ export default class CanvasTest extends Component {
     posted: false,
     postErr: false,
     submitBlank: false,
+    hue: 0,
+    lightness: 50,
+    saturation: 100,
   };
 
   componentDidMount() {
@@ -56,6 +60,7 @@ export default class CanvasTest extends Component {
   };
 
   render() {
+    const { hue, saturation, lightness } = this.state;
     const { uid } = this.props;
     return (
       <main className="canvas-draw-page">
@@ -68,44 +73,35 @@ export default class CanvasTest extends Component {
         {this.state.postErr && (
           <CanvasTestMessage message="Error! Please try again later" />
         )}
+
         <section className="colours">
           <button
             onClick={this.handleColorChange}
-            name="#0000ff"
+            name="#ffffff"
             className={
-              this.state.color === "#0000ff" ? "selected-color" : "paint-color"
+              lightness === 100 && saturation === 0
+                ? "selected-color"
+                : "paint-color"
             }
-            id="blue"
+            id="white"
           ></button>
-          <button
-            onClick={this.handleColorChange}
-            name="#ff0000"
-            className={
-              this.state.color === "#ff0000" ? "selected-color" : "paint-color"
-            }
-            id="red"
-          ></button>
-          <button
-            onClick={this.handleColorChange}
-            name="#00ff00"
-            className={
-              this.state.color === "#00ff00" ? "selected-color" : "paint-color"
-            }
-            id="green"
-          ></button>
-          <button
-            onClick={this.handleColorChange}
-            name="#ffff00"
-            className={
-              this.state.color === "#ffff00" ? "selected-color" : "paint-color"
-            }
-            id="yellow"
-          ></button>
+          <div className="colourSlider">
+            <HueSlider
+              hue={hue}
+              saturation={100}
+              lightness={50}
+              onUpdate={hue => {
+                this.setState({ hue, saturation: 100, lightness: 50 });
+              }}
+            />
+          </div>
           <button
             onClick={this.handleColorChange}
             name="#000000"
             className={
-              this.state.color === "#000000" ? "selected-color" : "paint-color"
+              lightness === 0 && saturation === 100
+                ? "selected-color"
+                : "paint-color"
             }
             id="black"
           ></button>
@@ -121,16 +117,16 @@ export default class CanvasTest extends Component {
             width: 16,
             marginLeft: -8,
             marginTop: -6,
-            backgroundColor: "#0E1C36",
+            backgroundColor: "#0E136",
             border: 0,
           }}
           trackStyle={{
-            background: this.state.color,
+            background: `hsl(${hue}, ${saturation}%, ${lightness}%)`,
           }}
         />
         <CanvasDraw
           ref={canvasDraw => (this.saveableCanvas = canvasDraw)}
-          brushColor={this.state.color}
+          brushColor={`hsl(${hue}, ${saturation}%, ${lightness}%)`}
           canvasWidth={this.state.dimension}
           canvasHeight={this.state.dimension}
           brushRadius={this.state.brushRadius}
@@ -196,7 +192,8 @@ export default class CanvasTest extends Component {
 
   handleColorChange = event => {
     const { name } = event.target;
-    this.setState({ color: name });
+    if (name === "#ffffff") this.setState({ lightness: 100, saturation: 0 });
+    if (name === "#000000") this.setState({ saturation: 100, lightness: 0 });
   };
 
   handleSliderChange = value => {
