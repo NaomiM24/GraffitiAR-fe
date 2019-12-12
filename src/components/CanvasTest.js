@@ -39,6 +39,16 @@ export default class CanvasTest extends Component {
         return { dimension: window.innerWidth * 0.4 };
       });
     }
+    if (window.innerHeight / window.innerWidth < 0.7) {
+      this.setState(() => {
+        return { dimension: window.innerWidth * 0.3 };
+      });
+    }
+    if (window.innerHeight / window.innerWidth < 0.55) {
+      this.setState(() => {
+        return { dimension: window.innerWidth * 0.2 };
+      });
+    }
     if (window.innerHeight < 570) {
       this.setState(() => {
         return { dimension: window.innerWidth * 0.7 };
