@@ -257,6 +257,12 @@ button {
   color: black;
 }
 
+.marker-user img {
+  height: 30px;
+  width: 30px;
+  border-radius: 25px;
+}
+
 .canvas-displayer-page {
   color: #0e1c36;
   height: 100%;

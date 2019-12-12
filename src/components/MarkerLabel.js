@@ -45,7 +45,7 @@ class MarkerLabel extends Component {
       <div className="marker-user">
         {username && likes !== null ? (
           <>
-            <p>Posted by: {username}</p>
+            <p>{username}</p>
             <img
               src={pic}
               alt={`${username}'s profile pic`}
