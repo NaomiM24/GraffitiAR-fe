@@ -38,14 +38,16 @@ class CanvasList extends Component {
   getNearbyMarkers = () => {
     const { currentLatLng } = this.state;
     api.getAllGraffiti().then(({ data }) => {
-      const nearbyMarkers = data.filter(marker => {
-        return (
-          getDistance(currentLatLng, {
-            lat: marker.geo_lat,
-            lng: marker.geo_long,
-          }) < 100
-        );
-      });
+      const nearbyMarkers = data
+        .filter(marker => {
+          return (
+            getDistance(currentLatLng, {
+              lat: marker.geo_lat,
+              lng: marker.geo_long,
+            }) < 100
+          );
+        })
+        .sort((a, b) => b.id - a.id);
       this.setState({ nearbyMarkers });
     });
   };
