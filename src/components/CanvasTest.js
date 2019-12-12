@@ -142,7 +142,7 @@ export default class CanvasTest extends Component {
             border: 0,
           }}
           trackStyle={{
-            background: "#0CCE6B",
+            background: this.state.color,
           }}
         />
         <CanvasDraw
