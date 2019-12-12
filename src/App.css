@@ -246,21 +246,52 @@ button {
 }
 
 .canvas-displayer-page {
-  color: black;
-  position: fixed;
-  left: 50%;
-  transform: translate(-50%, 0);
-  height: 75%;
-  margin: 25% 5px 0 5px;
+  color: #0e1c36;
+  height: 100%;
+  width: calc(var(--vw, 1vw) * 100 - 20px);
+  padding: 10px;
   display: flex;
   flex-direction: column;
 }
 .canvas-displayer {
-  position: fixed;
-  left: 50%;
-  transform: translate(-51.25%, 0);
-  margin-top: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
+
+.userPic {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.userPic img {
+  border-radius: 20px;
+  border: 1px solid #0e1c36;
+  height: 40px;
+  width: 40px;
+  margin: 5px 10px 0 0;
+}
+
+.dateLikes {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.displayerLikes {
+  padding-top: 10px;
+}
+
+.displayerLikes button {
+  margin-left: 0;
+}
+
+canvas {
+  border: 0.5px solid #7f8694;
+}
+
 .login {
   display: flex;
   flex-direction: column;

@@ -24,29 +24,13 @@ export default class CanvasTest extends Component {
   };
 
   componentDidMount() {
-    if (window.innerHeight / window.innerWidth < 1.5) {
+    if (window.innerHeight > window.innerWidth * 1.5) {
       this.setState(() => {
-        return { dimension: window.innerWidth * 0.7 };
+        return { dimension: window.innerWidth * 0.8 };
       });
-    }
-    if (window.innerHeight / window.innerWidth < 1.2) {
+    } else {
       this.setState(() => {
-        return { dimension: window.innerWidth * 0.5 };
-      });
-    }
-    if (window.innerHeight / window.innerWidth < 0.85) {
-      this.setState(() => {
-        return { dimension: window.innerWidth * 0.4 };
-      });
-    }
-    if (window.innerHeight / window.innerWidth < 0.7) {
-      this.setState(() => {
-        return { dimension: window.innerWidth * 0.3 };
-      });
-    }
-    if (window.innerHeight / window.innerWidth < 0.55) {
-      this.setState(() => {
-        return { dimension: window.innerWidth * 0.2 };
+        return { dimension: window.innerHeight * 0.5 };
       });
     }
     if (window.innerHeight < 570) {
