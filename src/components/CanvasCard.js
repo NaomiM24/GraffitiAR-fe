@@ -15,7 +15,6 @@ class CanvasCard extends Component {
     api
       .getUserById(graffiti.firebase_id)
       .then(({ data }) => {
-        console.log(data);
         this.setState({
           username: data.username,
           isLoading: false,

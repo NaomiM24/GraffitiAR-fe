@@ -15,7 +15,17 @@ class Settings extends Component {
   }
   state = {
     graffitiVisible: false,
+    displayPic: null,
   };
+
+  componentDidMount() {
+    const { uid } = this.props;
+    api.getUserById(uid).then(({ data }) => {
+      this.setState({
+        displayPic: data.display_pic_url,
+      });
+    });
+  }
 
   logout() {
     fire.auth().signOut();
@@ -27,13 +37,14 @@ class Settings extends Component {
     if (this.props.settingsVisibility) {
       visibility = "show";
     }
-
+    const { displayPic } = this.state;
     return (
       <div id="flyoutMenu" className={visibility}>
         <div className="settings-tile">
           <button className="close" onClick={this.props.handleClick}>
             <img src="./close.png" alt="close" />
           </button>
+          <img src={displayPic} alt="display pic" className="display-pic" />
           <h1>Settings</h1>
           <section className="options">
             <Link to="/" className="logout">
