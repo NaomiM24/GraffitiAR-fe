@@ -19,6 +19,7 @@ export default class CanvasTest extends Component {
       lat: 0,
       lng: 0,
     },
+    locationErr: false,
     posted: false,
     postErr: false,
     submitBlank: false,
@@ -68,6 +69,13 @@ export default class CanvasTest extends Component {
         {this.state.postErr && (
           <CanvasTestMessage message="Error! Please try again later" />
         )}
+        {this.state.locationErr && (
+          <CanvasTestMessage
+            message="Your location could not be accessed, please make sure you have GPS enabled"
+            type="error"
+          />
+        )}
+        ;
         <section className="colours">
           <button
             onClick={this.handleColorChange}
@@ -152,38 +160,49 @@ export default class CanvasTest extends Component {
           </button>
           <button
             onClick={() => {
-              const picture = this.saveableCanvas.getSaveData();
-              this.saveableCanvas.clear();
-              if (JSON.parse(picture).lines.length === 0) {
-                this.setState({ submitBlank: true }, () => {
+              if (
+                this.state.currentLatLng.lat === 0 &&
+                this.state.currentLatLng.lng === 0
+              ) {
+                this.setState({ locationErr: true }, () => {
                   setTimeout(() => {
-                    this.setState({ submitBlank: false });
+                    this.setState({ locationErr: false });
                   }, 3000);
                 });
               } else {
+                const picture = this.saveableCanvas.getSaveData();
                 let time = new Date().toLocaleDateString();
-                api
-                  .postCanvas(
-                    uid,
-                    picture,
-                    this.state.currentLatLng.lat,
-                    this.state.currentLatLng.lng,
-                    time
-                  )
-                  .then(() => {
-                    this.setState({ posted: true }, () => {
-                      setTimeout(() => {
-                        this.setState({ posted: false });
-                      }, 3000);
-                    });
-                  })
-                  .catch(err => {
-                    this.setState({ postErr: true }, () => {
-                      setTimeout(() => {
-                        this.setState({ postErr: false });
-                      }, 3000);
-                    });
+                this.saveableCanvas.clear();
+                if (JSON.parse(picture).lines.length === 0) {
+                  this.setState({ submitBlank: true }, () => {
+                    setTimeout(() => {
+                      this.setState({ submitBlank: false });
+                    }, 3000);
                   });
+                } else {
+                  api
+                    .postCanvas(
+                      uid,
+                      picture,
+                      this.state.currentLatLng.lat,
+                      this.state.currentLatLng.lng,
+                      time
+                    )
+                    .then(() => {
+                      this.setState({ posted: true }, () => {
+                        setTimeout(() => {
+                          this.setState({ posted: false });
+                        }, 3000);
+                      });
+                    })
+                    .catch(err => {
+                      this.setState({ postErr: true }, () => {
+                        setTimeout(() => {
+                          this.setState({ postErr: false });
+                        }, 3000);
+                      });
+                    });
+                }
               }
             }}
           >
