@@ -157,3 +157,15 @@ img {
   align-items: center;
   display: flex;
 }
+
+.filter canvas {
+  position: absolute;
+}
+
+.filter-box {
+  position: absolute;
+  z-index: 20;
+  height: 100%;
+  width: 75%;
+  background-color: rgba(199, 236, 241, 0);
+}

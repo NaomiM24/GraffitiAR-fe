@@ -3,6 +3,7 @@ import CanvasDraw from "react-canvas-draw";
 import * as api from "../api";
 import { Link } from "@reach/router";
 const arrow = require("../assets/left-arrow.png");
+const userImg = require("../assets/user.png");
 
 class CanvasDisplayer extends React.Component {
   state = {
@@ -59,6 +60,10 @@ class CanvasDisplayer extends React.Component {
     );
   };
 
+  handleError = () => {
+    this.setState({ profilePic: userImg });
+  };
+
   render() {
     const { votesAdded, graffiti, username, profilePic } = this.state;
     if (!username) return <p>Loading</p>;
@@ -66,11 +71,12 @@ class CanvasDisplayer extends React.Component {
       <div className="canvas-displayer-page">
         <button>
           <Link to={`/view`}>
-            <img src={arrow} />
+
+            <img src={arrow} alt="back" />
           </Link>
         </button>
         <div className="userPic">
-          <img src={profilePic} />
+          <img src={profilePic} alt="display pic" onError={this.handleError} />
           <p>{username}</p>
         </div>
         <div className="dateLikes">

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "@reach/router";
 import * as api from "../api";
+const userImg = require("../assets/user.png");
 
 class CanvasCard extends Component {
   state = {
@@ -29,6 +30,10 @@ class CanvasCard extends Component {
       });
   }
 
+  handleError = () => {
+    this.setState({ displayPic: userImg });
+  };
+
   render() {
     const { graffiti } = this.props;
     const { username, isLoading, err, displayPic } = this.state;
@@ -41,15 +46,17 @@ class CanvasCard extends Component {
         ) : (
           <Link to={`/view/${graffiti.id}`} className="view">
             <p className="posted-by">{username}</p>
-            {/* <Link to={`/view/${graffiti.id}`} className="view"> */}
-            {/* View Graffiti
-            </Link> */}
             <p className="posted-on">{graffiti.created_at}</p>
             <p className="likes">
               <img src="/likes.png" alt="likes" /> {graffiti.votes}
             </p>
             <p className="posted-by-pic">
-              <img src={displayPic} alt="display pic" className="display-pic" />
+              <img
+                src={displayPic}
+                alt="display pic"
+                className="display-pic"
+                onError={this.handleError}
+              />
             </p>
           </Link>
         )}

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import * as api from "../api.js";
+import CanvasTestMessage from "./CanvasTestMessage.js";
 
 class ChangeUsername extends Component {
   constructor(props) {
@@ -10,6 +11,8 @@ class ChangeUsername extends Component {
     );
     this.state = {
       newUsername: "",
+      changed: false,
+      error: false,
     };
   }
 
@@ -26,13 +29,33 @@ class ChangeUsername extends Component {
         },
         this.props.uid
       )
-      .then(() => {
-        this.setState({ newUsername: "" });
+      .then(({ data }) => {
+        this.setState({ newUsername: "", changed: true }, () => {
+          setTimeout(() => {
+            this.setState({ changed: false });
+          }, 2000);
+        });
+      })
+      .catch(() => {
+        this.setState({ error: true }, () => {
+          setTimeout(() => {
+            this.setState({ error: false });
+          }, 2000);
+        });
       });
   }
   render() {
     return (
       <div className="change">
+        {this.state.changed && (
+          <CanvasTestMessage message="Username successfully changed!" />
+        )}
+        {this.state.error && (
+          <CanvasTestMessage
+            message="Username could not be changed right now, please try again later"
+            type="error"
+          />
+        )}
         <form onSubmit={this.changeUsernameByFirebaseID}>
           <label>
             New Username:

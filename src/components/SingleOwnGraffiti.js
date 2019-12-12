@@ -10,17 +10,20 @@ export default class SingleOwnGraffiti extends Component {
     const { graffiti } = this.props;
     return (
       <li>
-        <CanvasDraw
-          disabled
-          hideGrid
-          lazyRadius={0}
-          brushRadius={0}
-          catenaryColor={"#FFFFFFFF"}
-          ref={canvasDraw => (this.loadableCanvas = canvasDraw)}
-          saveData={graffiti.drawing_str}
-          canvasWidth={this.state.dimension}
-          canvasHeight={this.state.dimension}
-        />
+        <div className="filter">
+          <div className="filter-box"></div>
+          <CanvasDraw
+            disabled
+            hideGrid
+            lazyRadius={0}
+            brushRadius={0}
+            catenaryColor={"#FFFFFFFF"}
+            ref={canvasDraw => (this.loadableCanvas = canvasDraw)}
+            saveData={graffiti.drawing_str}
+            canvasWidth={this.state.dimension}
+            canvasHeight={this.state.dimension}
+          />
+        </div>
         <button className="delete-graffiti" onClick={this.handleDelete}>
           <img src="/rubbish-bin.png" alt="delete" />
         </button>
@@ -30,9 +33,6 @@ export default class SingleOwnGraffiti extends Component {
   handleDelete = () => {
     const { graffiti, removeGraffiti } = this.props;
     removeGraffiti(graffiti.id);
-    api
-      .deleteGraffiti(graffiti.id)
-      .then(() => console.log("graffiti deleted"))
-      .catch(err => console.log(err));
+    api.deleteGraffiti(graffiti.id);
   };
 }

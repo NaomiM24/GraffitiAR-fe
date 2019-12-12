@@ -7,6 +7,7 @@ import ChangeDisplayPicture from "./ChangeDisplayPicture";
 import AllOwnGraffiti from "./AllOwnGraffiti";
 import { Link } from "@reach/router";
 import * as api from "../api";
+const userImg = require("../assets/user.png");
 
 class Settings extends Component {
   constructor(props) {
@@ -27,9 +28,24 @@ class Settings extends Component {
     });
   }
 
+  componentDidUpdate(prevProps) {
+    const { uid, settingsVisibility } = this.props;
+    if (prevProps.settingsVisibility !== settingsVisibility) {
+      api.getUserById(uid).then(({ data }) => {
+        this.setState({
+          displayPic: data.display_pic_url,
+        });
+      });
+    }
+  }
+
   logout() {
     fire.auth().signOut();
   }
+
+  handleError = () => {
+    this.setState({ displayPic: userImg });
+  };
 
   render() {
     let visibility = "hide";
@@ -44,7 +60,12 @@ class Settings extends Component {
           <button className="close" onClick={this.props.handleClick}>
             <img src="./close.png" alt="close" />
           </button>
-          <img src={displayPic} alt="display pic" className="display-pic" />
+          <img
+            src={displayPic}
+            alt="display pic"
+            className="display-pic"
+            onError={this.handleError}
+          />
           <h1>Settings</h1>
           <section className="options">
             <Link to="/" className="logout">

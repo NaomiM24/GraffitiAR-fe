@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import fire from "../config/Fire";
 import { Link } from "@reach/router";
+import CanvasTestMessage from "./CanvasTestMessage";
 
 class Login extends Component {
   constructor(props) {
@@ -29,11 +30,26 @@ class Login extends Component {
       })
       .catch(() => {
         if (email === "") {
-          this.setState({ errMsg: "Please enter your email" });
+          this.setState({ errMsg: "Please enter your email" }, () => {
+            setTimeout(() => {
+              this.setState({ errMsg: "" });
+            }, 3000);
+          });
         } else if (password === "") {
-          this.setState({ errMsg: "Please enter your password" });
+          this.setState({ errMsg: "Please enter your password" }, () => {
+            setTimeout(() => {
+              this.setState({ errMsg: "" });
+            }, 3000);
+          });
         } else {
-          this.setState({ errMsg: "Your username or password is incorrect" });
+          this.setState(
+            { errMsg: "Your username or password is incorrect" },
+            () => {
+              setTimeout(() => {
+                this.setState({ errMsg: "" });
+              }, 3000);
+            }
+          );
         }
       });
   }
@@ -76,10 +92,7 @@ class Login extends Component {
           </form>
 
           {this.state.errMsg && (
-            <div className="loginError">
-              <img src="/icon.png" alt="error" />
-              <p>{this.state.errMsg}</p>
-            </div>
+            <CanvasTestMessage message={this.state.errMsg} type="error" />
           )}
 
           <section>
