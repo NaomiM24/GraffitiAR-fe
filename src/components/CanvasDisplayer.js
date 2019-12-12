@@ -2,12 +2,15 @@ import React from "react";
 import CanvasDraw from "react-canvas-draw";
 import * as api from "../api";
 import { Link } from "@reach/router";
+const arrow = require("../assets/left-arrow.png");
 
 class CanvasDisplayer extends React.Component {
   state = {
     votesAdded: 0,
     graffiti: null,
     username: null,
+    profilePic: null,
+    dimension: window.innerWidth * 0.9,
   };
 
   componentDidMount() {
@@ -19,9 +22,26 @@ class CanvasDisplayer extends React.Component {
       })
       .then(() => {
         api.getUserById(this.state.graffiti.firebase_id).then(({ data }) => {
-          this.setState({ username: data.username });
+          this.setState({
+            username: data.username,
+            profilePic: data.display_pic_url,
+          });
         });
       });
+    if (window.innerHeight > window.innerWidth * 1.5) {
+      this.setState(() => {
+        return { dimension: window.innerWidth * 0.8 };
+      });
+    } else {
+      this.setState(() => {
+        return { dimension: window.innerHeight * 0.5 };
+      });
+    }
+    if (window.innerHeight < 570) {
+      this.setState(() => {
+        return { dimension: window.innerWidth * 0.6 };
+      });
+    }
   }
 
   handleVote = (votes, id) => {
@@ -40,24 +60,34 @@ class CanvasDisplayer extends React.Component {
   };
 
   render() {
-    const { votesAdded, graffiti, username } = this.state;
+    const { votesAdded, graffiti, username, profilePic } = this.state;
     if (!username) return <p>Loading</p>;
     return (
       <div className="canvas-displayer-page">
         <button>
-          <Link to={`/view`}>back</Link>
+          <Link to={`/view`}>
+            <img src={arrow} />
+          </Link>
         </button>
-        <p>posted by: {username}</p>
-        <p>
-          <button onClick={() => this.handleVote(graffiti.votes, graffiti.id)}>
-            {votesAdded === 0 ? (
-              <img src="/unlike.png" alt="unliked" />
-            ) : (
-              <img src="/like.png" alt="like" />
-            )}
-          </button>
-          {graffiti.votes + votesAdded}
-        </p>
+        <div className="userPic">
+          <img src={profilePic} />
+          <p>{username}</p>
+        </div>
+        <div className="dateLikes">
+          <p>{graffiti.created_at}</p>
+          <div className="displayerLikes">
+            {graffiti.votes + votesAdded}
+            <button
+              onClick={() => this.handleVote(graffiti.votes, graffiti.id)}
+            >
+              {votesAdded === 0 ? (
+                <img src="/unlike.png" alt="unliked" />
+              ) : (
+                <img src="/like.png" alt="like" />
+              )}
+            </button>
+          </div>
+        </div>
         <div className="canvas-displayer">
           <CanvasDraw
             disabled
@@ -67,6 +97,8 @@ class CanvasDisplayer extends React.Component {
             catenaryColor={"#FFFFFFFF"}
             ref={canvasDraw => (this.loadableCanvas = canvasDraw)}
             saveData={graffiti.drawing_str}
+            canvasWidth={this.state.dimension}
+            canvasHeight={this.state.dimension}
           />
         </div>
       </div>
