@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import CanvasDraw from "react-canvas-draw";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
-import { HueSlider, SaturationSlider } from "react-color-sliders";
+import { HueSlider } from "react-color-sliders";
 import * as api from "../api";
 import CanvasTestMessage from "./CanvasTestMessage";
 
@@ -139,6 +139,7 @@ export default class CanvasTest extends Component {
           canvasWidth={this.state.dimension}
           canvasHeight={this.state.dimension}
           brushRadius={this.state.brushRadius}
+          lazyRadius={0}
         />
         <div className="canvas-buttons">
           <button
