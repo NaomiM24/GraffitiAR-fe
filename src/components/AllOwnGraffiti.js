@@ -9,9 +9,9 @@ export default class AllOwnGraffiti extends Component {
 
   componentDidMount() {
     api.getAllGraffiti().then(({ data }) => {
-      const filteredData = data.filter(
-        graffiti => graffiti.firebase_id === this.props.uid
-      );
+      const filteredData = data
+        .filter(graffiti => graffiti.firebase_id === this.props.uid)
+        .sort((a, b) => b.id - a.id);
       this.setState({ myGraffiti: filteredData });
     });
   }
@@ -19,9 +19,9 @@ export default class AllOwnGraffiti extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.graffitiVisibility !== this.props.graffitiVisibility) {
       api.getAllGraffiti().then(({ data }) => {
-        const filteredData = data.filter(
-          graffiti => graffiti.firebase_id === this.props.uid
-        );
+        const filteredData = data
+          .filter(graffiti => graffiti.firebase_id === this.props.uid)
+          .sort((a, b) => b.id - a.id);
         this.setState({ myGraffiti: filteredData });
       });
     }
