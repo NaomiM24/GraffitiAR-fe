@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import fire from "../config/Fire";
 import { Link, navigate } from "@reach/router";
 import * as api from "../api.js";
+import CanvasTestMessage from "./CanvasTestMessage";
 
 class Signup extends Component {
   constructor(props) {
@@ -38,17 +39,40 @@ class Signup extends Component {
           });
           navigate("/");
         })
-        .catch(err => {
-          if (email === "") {
-            this.setState({ errMsg: "Please enter a valid email" });
-          } else if (password === "") {
-            this.setState({ errMsg: "Please enter a password" });
-          } else if (username === "") {
-            this.setState({ errMsg: "Please enter a username" });
-          } else {
-            this.setState({ errMsg: err.message });
+        .catch(
+          err => {
+            if (email === "") {
+              this.setState({ errMsg: "Please enter a valid email" }, () => {
+                setTimeout(() => {
+                  this.setState({ errMsg: "" });
+                }, 3000);
+              });
+            } else if (password === "") {
+              this.setState({ errMsg: "Please enter a password" }, () => {
+                setTimeout(() => {
+                  this.setState({ errMsg: "" });
+                }, 3000);
+              });
+            } else if (username === "") {
+              this.setState({ errMsg: "Please enter a username" }, () => {
+                setTimeout(() => {
+                  this.setState({ errMsg: "" });
+                }, 3000);
+              });
+            } else {
+              this.setState({ errMsg: err.message }, () => {
+                setTimeout(() => {
+                  this.setState({ errMsg: "" });
+                }, 3000);
+              });
+            }
+          },
+          () => {
+            setTimeout(() => {
+              this.setState({ errMsg: "" });
+            }, 3000);
           }
-        });
+        );
     }
   }
 
@@ -109,10 +133,7 @@ class Signup extends Component {
           </form>
 
           {this.state.errMsg && (
-            <div className="signupError">
-              <img src="/icon.png" alt="error" />
-              <p>{this.state.errMsg}</p>
-            </div>
+            <CanvasTestMessage message={this.state.errMsg} type="error" />
           )}
 
           <section>

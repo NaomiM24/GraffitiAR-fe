@@ -52,7 +52,10 @@ class ChangeDisplayPicture extends Component {
           <CanvasTestMessage message="Picture successfully changed!" />
         )}
         {this.state.error && (
-          <CanvasTestMessage message="Picture could not be changed right now, please try again later" />
+          <CanvasTestMessage
+            message="Picture could not be changed right now, please try again later"
+            type="error"
+          />
         )}
         <form onSubmit={this.changeDisplayPictureByFirebaseID}>
           <label>
