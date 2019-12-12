@@ -8,11 +8,11 @@ Note the application has been built with Chrome on Android and Safari on iOS. Pe
 
 ## To run this project locally:
 
-1. Click on the repo's "Clone or Download" button link and copy the URL (https://github.com/NaomiM24/GraffitiAR-fe.gitt)
+1. Click on the repo's "Clone or Download" button link and copy the URL (https://github.com/NaomiM24/geograffiti.git)
 2. Navigate to where you'd like the application to be copied in your command line and write:
 
    ```
-   git clone https://github.com/NaomiM24/GraffitiAR-fe.git
+   git clone https://github.com/NaomiM24/geograffiti.git
    ```
 
 3. Navigate to the newly-created folder in your command line interface and type `npm install` to install all dependencies.
