@@ -261,6 +261,7 @@ button {
   height: 30px;
   width: 30px;
   border-radius: 25px;
+  border: 1px solid #0e1c36;
 }
 
 .canvas-displayer-page {
