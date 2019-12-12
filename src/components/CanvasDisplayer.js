@@ -71,7 +71,8 @@ class CanvasDisplayer extends React.Component {
       <div className="canvas-displayer-page">
         <button>
           <Link to={`/view`}>
-            <img src={arrow} alt="arrow" />
+
+            <img src={arrow} alt="back" />
           </Link>
         </button>
         <div className="userPic">
