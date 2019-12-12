@@ -49,8 +49,8 @@ class CanvasCard extends Component {
             <p className="likes">
               <img src="/likes.png" alt="likes" /> {graffiti.votes}
             </p>
-            <p className="posted-by-url">
-              <img src={displayPic} alt="display pic" />
+            <p className="posted-by-pic">
+              <img src={displayPic} alt="display pic" className="display-pic" />
             </p>
           </Link>
         )}
