@@ -57,7 +57,7 @@ class CanvasList extends Component {
     return (
       <div className="canvas-list-page">
         <h2>Posts in your location</h2>
-        <p>click to view graffiti</p>
+        <p>click card to view graffiti</p>
         <button onClick={this.getGeoLocation}>
           <img src="/refresh.png" alt="refresh" />
         </button>

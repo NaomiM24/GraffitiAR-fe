@@ -4,6 +4,7 @@ import CanvasDraw from "react-canvas-draw";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import * as api from "../api";
+import CanvasTestMessage from "./CanvasTestMessage";
 
 ReactDOM.render(<CanvasDraw />, document.getElementById("root"));
 
@@ -59,15 +60,13 @@ export default class CanvasTest extends Component {
     return (
       <main className="canvas-draw-page">
         {this.state.posted && (
-          <p className="posted-graffiti">
-            Your graffiti has been successfully posted!
-          </p>
+          <CanvasTestMessage message="Your graffiti has been successfully posted!" />
         )}
         {this.state.submitBlank && (
-          <p className="blank-error">Draw on canvas to submit!</p>
+          <CanvasTestMessage message="Draw on canvas to submit!" />
         )}
         {this.state.postErr && (
-          <p className="posted-graffiti-error">Error! Please try again later</p>
+          <CanvasTestMessage message="Error! Please try again later" />
         )}
         <section className="colours">
           <button
