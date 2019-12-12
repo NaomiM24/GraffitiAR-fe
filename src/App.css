@@ -247,6 +247,7 @@ button {
   height: 50px;
   width: 50px;
   border-radius: 25px;
+  border: 1px solid #0e1c36;
 }
 
 .vote {
@@ -255,6 +256,13 @@ button {
 
 .marker-user {
   color: black;
+}
+
+.marker-user img {
+  height: 30px;
+  width: 30px;
+  border-radius: 25px;
+  border: 1px solid #0e1c36;
 }
 
 .canvas-displayer-page {
