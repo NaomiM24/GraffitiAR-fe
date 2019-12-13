@@ -44,7 +44,7 @@ class CanvasList extends Component {
             getDistance(currentLatLng, {
               lat: marker.geo_lat,
               lng: marker.geo_long,
-            }) < 100
+            }) < 1000
           );
         })
         .sort((a, b) => b.id - a.id);
